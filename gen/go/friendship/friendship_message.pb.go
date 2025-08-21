@@ -26,25 +26,19 @@ const (
 type FriendshipType int32
 
 const (
-	FriendshipType_FRIENDSHIP_TYPE_UNSPECIFIED FriendshipType = 0
-	FriendshipType_FRIENDSHIP_TYPE_PENDING     FriendshipType = 1
-	FriendshipType_FRIENDSHIP_TYPE_ACCEPTED    FriendshipType = 2
-	FriendshipType_FRIENDSHIP_TYPE_BLOCKED     FriendshipType = 3
+	FriendshipType_ANONYMOUS FriendshipType = 0
+	FriendshipType_REAL      FriendshipType = 1
 )
 
 // Enum value maps for FriendshipType.
 var (
 	FriendshipType_name = map[int32]string{
-		0: "FRIENDSHIP_TYPE_UNSPECIFIED",
-		1: "FRIENDSHIP_TYPE_PENDING",
-		2: "FRIENDSHIP_TYPE_ACCEPTED",
-		3: "FRIENDSHIP_TYPE_BLOCKED",
+		0: "ANONYMOUS",
+		1: "REAL",
 	}
 	FriendshipType_value = map[string]int32{
-		"FRIENDSHIP_TYPE_UNSPECIFIED": 0,
-		"FRIENDSHIP_TYPE_PENDING":     1,
-		"FRIENDSHIP_TYPE_ACCEPTED":    2,
-		"FRIENDSHIP_TYPE_BLOCKED":     3,
+		"ANONYMOUS": 0,
+		"REAL":      1,
 	}
 )
 
@@ -183,7 +177,7 @@ func (x *FriendshipResponse) GetType() FriendshipType {
 	if x != nil {
 		return x.Type
 	}
-	return FriendshipType_FRIENDSHIP_TYPE_UNSPECIFIED
+	return FriendshipType_ANONYMOUS
 }
 
 func (x *FriendshipResponse) GetProfileId() string {
@@ -293,7 +287,7 @@ func (x *FriendDetails) GetType() FriendshipType {
 	if x != nil {
 		return x.Type
 	}
-	return FriendshipType_FRIENDSHIP_TYPE_UNSPECIFIED
+	return FriendshipType_ANONYMOUS
 }
 
 func (x *FriendDetails) GetEmail() string {
@@ -628,12 +622,10 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"profileId2\"2\n" +
 	"\x11IsFriendsResponse\x12\x1d\n" +
 	"\n" +
-	"is_friends\x18\x01 \x01(\bR\tisFriends*\x89\x01\n" +
-	"\x0eFriendshipType\x12\x1f\n" +
-	"\x1bFRIENDSHIP_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n" +
-	"\x17FRIENDSHIP_TYPE_PENDING\x10\x01\x12\x1c\n" +
-	"\x18FRIENDSHIP_TYPE_ACCEPTED\x10\x02\x12\x1b\n" +
-	"\x17FRIENDSHIP_TYPE_BLOCKED\x10\x03B5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
+	"is_friends\x18\x01 \x01(\bR\tisFriends*)\n" +
+	"\x0eFriendshipType\x12\r\n" +
+	"\tANONYMOUS\x10\x00\x12\b\n" +
+	"\x04REAL\x10\x01B5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
 
 var (
 	file_friendship_friendship_message_proto_rawDescOnce sync.Once

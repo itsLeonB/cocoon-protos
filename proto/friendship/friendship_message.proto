@@ -8,10 +8,8 @@ option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship";
 
 // Enum for friendship type
 enum FriendshipType {
-  FRIENDSHIP_TYPE_UNSPECIFIED = 0;
-  FRIENDSHIP_TYPE_PENDING = 1;
-  FRIENDSHIP_TYPE_ACCEPTED = 2;
-  FRIENDSHIP_TYPE_BLOCKED = 3;
+  ANONYMOUS = 0;
+  REAL = 1;
 }
 
 // Request to create new anonymous friendship
