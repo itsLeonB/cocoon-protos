@@ -78,7 +78,7 @@ func (FriendshipType) EnumDescriptor() ([]byte, []int) {
 // Request to create new anonymous friendship
 type NewAnonymousFriendshipRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"` // required in API layer, not enforced by proto
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -114,9 +114,9 @@ func (*NewAnonymousFriendshipRequest) Descriptor() ([]byte, []int) {
 	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *NewAnonymousFriendshipRequest) GetUserId() string {
+func (x *NewAnonymousFriendshipRequest) GetProfileId() string {
 	if x != nil {
-		return x.UserId
+		return x.ProfileId
 	}
 	return ""
 }
@@ -579,9 +579,10 @@ var File_friendship_friendship_message_proto protoreflect.FileDescriptor
 const file_friendship_friendship_message_proto_rawDesc = "" +
 	"\n" +
 	"#friendship/friendship_message.proto\x12\n" +
-	"friendship\x1a\x1fgoogle/protobuf/timestamp.proto\"L\n" +
-	"\x1dNewAnonymousFriendshipRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"friendship\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
+	"\x1dNewAnonymousFriendshipRequest\x12\x1d\n" +
+	"\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"\xc7\x02\n" +
 	"\x12FriendshipResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
