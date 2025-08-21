@@ -7,6 +7,7 @@ option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/auth";
 service AuthService {
   rpc Register (RegisterRequest) returns (RegisterResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
+  rpc VerifyToken (VerifyTokenRequest) returns (AuthData);
 }
 
 message RegisterRequest {
@@ -27,4 +28,12 @@ message LoginRequest {
 message LoginResponse {
   string type = 1;
   string token = 2;
+}
+
+message VerifyTokenRequest {
+  string token = 1;
+}
+
+message AuthData {
+  string profileID = 1;
 }
