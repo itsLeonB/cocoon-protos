@@ -340,7 +340,7 @@ func (x *FriendDetails) GetDeletedAt() *timestamppb.Timestamp {
 
 type GetAllRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -375,9 +375,9 @@ func (*GetAllRequest) Descriptor() ([]byte, []int) {
 	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetAllRequest) GetUserId() string {
+func (x *GetAllRequest) GetProfileId() string {
 	if x != nil {
-		return x.UserId
+		return x.ProfileId
 	}
 	return ""
 }
@@ -428,7 +428,7 @@ func (x *GetAllResponse) GetFriendships() []*FriendshipResponse {
 
 type GetDetailsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	FriendshipId  string                 `protobuf:"bytes,2,opt,name=friendship_id,json=friendshipId,proto3" json:"friendship_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -464,9 +464,9 @@ func (*GetDetailsRequest) Descriptor() ([]byte, []int) {
 	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetDetailsRequest) GetUserId() string {
+func (x *GetDetailsRequest) GetProfileId() string {
 	if x != nil {
-		return x.UserId
+		return x.ProfileId
 	}
 	return ""
 }
@@ -610,13 +610,15 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
 	"\n" +
 	"deleted_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"(\n" +
-	"\rGetAllRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"R\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\".\n" +
+	"\rGetAllRequest\x12\x1d\n" +
+	"\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\"R\n" +
 	"\x0eGetAllResponse\x12@\n" +
-	"\vfriendships\x18\x01 \x03(\v2\x1e.friendship.FriendshipResponseR\vfriendships\"Q\n" +
-	"\x11GetDetailsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
+	"\vfriendships\x18\x01 \x03(\v2\x1e.friendship.FriendshipResponseR\vfriendships\"W\n" +
+	"\x11GetDetailsRequest\x12\x1d\n" +
+	"\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\x12#\n" +
 	"\rfriendship_id\x18\x02 \x01(\tR\ffriendshipId\"V\n" +
 	"\x10IsFriendsRequest\x12 \n" +
 	"\fprofile_id_1\x18\x01 \x01(\tR\n" +

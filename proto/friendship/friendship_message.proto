@@ -46,7 +46,7 @@ message FriendDetails {
 }
 
 message GetAllRequest {
-  string user_id = 1;
+  string profile_id = 1;
 }
 
 message GetAllResponse {
@@ -54,7 +54,7 @@ message GetAllResponse {
 }
 
 message GetDetailsRequest {
-  string user_id = 1;
+  string profile_id = 1;
   string friendship_id = 2;
 }
 
