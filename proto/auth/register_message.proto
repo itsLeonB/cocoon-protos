@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/auth";
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+  string password_confirmation = 3;
+}
+
+message RegisterResponse {
+  string message = 1;
+}

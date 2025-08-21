@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package profile;
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile";
+
+import "profile/profile_message.proto";
+
+service ProfileService {
+  rpc Get (ProfileRequest) returns (ProfileResponse);
+}

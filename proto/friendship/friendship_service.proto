@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package friendship;
+
+import "friendship/friendship_message.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship";
+
+service FriendshipService {
+  rpc CreateAnonymous (NewAnonymousFriendshipRequest) returns (FriendshipResponse);
+  rpc GetAll (GetAllRequest) returns (GetAllResponse);
+  rpc GetDetails (GetDetailsRequest) returns (FriendDetails);
+  rpc IsFriends (IsFriendsRequest) returns (IsFriendsResponse);
+}

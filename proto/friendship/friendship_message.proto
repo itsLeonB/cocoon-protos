@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package friendship;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship";
+
+// Enum for friendship type
+enum FriendshipType {
+  FRIENDSHIP_TYPE_UNSPECIFIED = 0;
+  FRIENDSHIP_TYPE_PENDING = 1;
+  FRIENDSHIP_TYPE_ACCEPTED = 2;
+  FRIENDSHIP_TYPE_BLOCKED = 3;
+}
+
+// Request to create new anonymous friendship
+message NewAnonymousFriendshipRequest {
+  string user_id = 1;
+  string name = 2; // required in API layer, not enforced by proto
+}
+
+// Response with friendship summary
+message FriendshipResponse {
+  string id = 1;
+  FriendshipType type = 2;
+  string profile_id = 3;
+  string profile_name = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  google.protobuf.Timestamp deleted_at = 7;
+}
+
+// Detailed info about a friend
+message FriendDetails {
+  string id = 1;
+  string profile_id = 2;
+  string name = 3;
+  FriendshipType type = 4;
+  string email = 5;
+  string phone = 6;
+  string avatar = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+  google.protobuf.Timestamp deleted_at = 10;
+}
+
+message GetAllRequest {
+  string user_id = 1;
+}
+
+message GetAllResponse {
+  repeated FriendshipResponse friendships = 1;
+}
+
+message GetDetailsRequest {
+  string user_id = 1;
+  string friendship_id = 2;
+}
+
+message IsFriendsRequest {
+  string profile_id_1 = 1;
+  string profile_id_2 = 2;
+}
+
+message IsFriendsResponse {
+  bool is_friends = 1;
+}

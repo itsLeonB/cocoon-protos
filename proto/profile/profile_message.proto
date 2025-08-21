@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package profile;
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile";
+
+import "google/protobuf/timestamp.proto";
+
+message ProfileRequest {
+  string profileID = 1;
+}
+
+message ProfileResponse {
+  string user_id = 1;
+  string profile_id = 2;
+  string name = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  google.protobuf.Timestamp deleted_at = 6;
+}
