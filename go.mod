@@ -1,4 +1,4 @@
-module github.com/itsLeonB/cocoon-protos/gen/go
+module github.com/itsLeonB/cocoon-protos
 
 go 1.24.4
 
