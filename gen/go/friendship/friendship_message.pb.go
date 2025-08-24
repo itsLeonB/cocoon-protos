@@ -26,19 +26,19 @@ const (
 type FriendshipType int32
 
 const (
-	FriendshipType_ANONYMOUS FriendshipType = 0
-	FriendshipType_REAL      FriendshipType = 1
+	FriendshipType_ANON FriendshipType = 0
+	FriendshipType_REAL FriendshipType = 1
 )
 
 // Enum value maps for FriendshipType.
 var (
 	FriendshipType_name = map[int32]string{
-		0: "ANONYMOUS",
+		0: "ANON",
 		1: "REAL",
 	}
 	FriendshipType_value = map[string]int32{
-		"ANONYMOUS": 0,
-		"REAL":      1,
+		"ANON": 0,
+		"REAL": 1,
 	}
 )
 
@@ -177,7 +177,7 @@ func (x *FriendshipResponse) GetType() FriendshipType {
 	if x != nil {
 		return x.Type
 	}
-	return FriendshipType_ANONYMOUS
+	return FriendshipType_ANON
 }
 
 func (x *FriendshipResponse) GetProfileId() string {
@@ -287,7 +287,7 @@ func (x *FriendDetails) GetType() FriendshipType {
 	if x != nil {
 		return x.Type
 	}
-	return FriendshipType_ANONYMOUS
+	return FriendshipType_ANON
 }
 
 func (x *FriendDetails) GetEmail() string {
@@ -622,9 +622,9 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"profileId2\"2\n" +
 	"\x11IsFriendsResponse\x12\x1d\n" +
 	"\n" +
-	"is_friends\x18\x01 \x01(\bR\tisFriends*)\n" +
-	"\x0eFriendshipType\x12\r\n" +
-	"\tANONYMOUS\x10\x00\x12\b\n" +
+	"is_friends\x18\x01 \x01(\bR\tisFriends*$\n" +
+	"\x0eFriendshipType\x12\b\n" +
+	"\x04ANON\x10\x00\x12\b\n" +
 	"\x04REAL\x10\x01B5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
 
 var (
