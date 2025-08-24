@@ -150,6 +150,58 @@ func (x *ProfileResponse) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type NewProfileRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *string                `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3,oneof" json:"user_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NewProfileRequest) Reset() {
+	*x = NewProfileRequest{}
+	mi := &file_profile_profile_message_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NewProfileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NewProfileRequest) ProtoMessage() {}
+
+func (x *NewProfileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_profile_message_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NewProfileRequest.ProtoReflect.Descriptor instead.
+func (*NewProfileRequest) Descriptor() ([]byte, []int) {
+	return file_profile_profile_message_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *NewProfileRequest) GetUserId() string {
+	if x != nil && x.UserId != nil {
+		return *x.UserId
+	}
+	return ""
+}
+
+func (x *NewProfileRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_profile_profile_message_proto protoreflect.FileDescriptor
 
 const file_profile_profile_message_proto_rawDesc = "" +
@@ -167,7 +219,12 @@ const file_profile_profile_message_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
 	"\n" +
-	"deleted_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAtB2Z0github.com/itsLeonB/cocoon-protos/gen/go/profileb\x06proto3"
+	"deleted_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"Q\n" +
+	"\x11NewProfileRequest\x12\x1c\n" +
+	"\auser_id\x18\x01 \x01(\tH\x00R\x06userId\x88\x01\x01\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04nameB\n" +
+	"\n" +
+	"\b_user_idB2Z0github.com/itsLeonB/cocoon-protos/gen/go/profileb\x06proto3"
 
 var (
 	file_profile_profile_message_proto_rawDescOnce sync.Once
@@ -181,16 +238,17 @@ func file_profile_profile_message_proto_rawDescGZIP() []byte {
 	return file_profile_profile_message_proto_rawDescData
 }
 
-var file_profile_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_profile_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_profile_profile_message_proto_goTypes = []any{
 	(*ProfileRequest)(nil),        // 0: profile.ProfileRequest
 	(*ProfileResponse)(nil),       // 1: profile.ProfileResponse
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*NewProfileRequest)(nil),     // 2: profile.NewProfileRequest
+	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_profile_profile_message_proto_depIdxs = []int32{
-	2, // 0: profile.ProfileResponse.created_at:type_name -> google.protobuf.Timestamp
-	2, // 1: profile.ProfileResponse.updated_at:type_name -> google.protobuf.Timestamp
-	2, // 2: profile.ProfileResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	3, // 0: profile.ProfileResponse.created_at:type_name -> google.protobuf.Timestamp
+	3, // 1: profile.ProfileResponse.updated_at:type_name -> google.protobuf.Timestamp
+	3, // 2: profile.ProfileResponse.deleted_at:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -203,13 +261,14 @@ func file_profile_profile_message_proto_init() {
 	if File_profile_profile_message_proto != nil {
 		return
 	}
+	file_profile_profile_message_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_profile_profile_message_proto_rawDesc), len(file_profile_profile_message_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

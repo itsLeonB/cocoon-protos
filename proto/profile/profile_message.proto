@@ -18,3 +18,8 @@ message ProfileResponse {
   google.protobuf.Timestamp updated_at = 5;
   google.protobuf.Timestamp deleted_at = 6;
 }
+
+message NewProfileRequest {
+  optional string user_id = 1;
+  string name = 2;
+}

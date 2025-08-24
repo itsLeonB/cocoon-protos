@@ -24,19 +24,23 @@ var File_profile_profile_service_proto protoreflect.FileDescriptor
 
 const file_profile_profile_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1dprofile/profile_service.proto\x12\aprofile\x1a\x1dprofile/profile_message.proto2J\n" +
+	"\x1dprofile/profile_service.proto\x12\aprofile\x1a\x1dprofile/profile_message.proto2\x8a\x01\n" +
 	"\x0eProfileService\x128\n" +
-	"\x03Get\x12\x17.profile.ProfileRequest\x1a\x18.profile.ProfileResponseB2Z0github.com/itsLeonB/cocoon-protos/gen/go/profileb\x06proto3"
+	"\x03Get\x12\x17.profile.ProfileRequest\x1a\x18.profile.ProfileResponse\x12>\n" +
+	"\x06Create\x12\x1a.profile.NewProfileRequest\x1a\x18.profile.ProfileResponseB2Z0github.com/itsLeonB/cocoon-protos/gen/go/profileb\x06proto3"
 
 var file_profile_profile_service_proto_goTypes = []any{
-	(*ProfileRequest)(nil),  // 0: profile.ProfileRequest
-	(*ProfileResponse)(nil), // 1: profile.ProfileResponse
+	(*ProfileRequest)(nil),    // 0: profile.ProfileRequest
+	(*NewProfileRequest)(nil), // 1: profile.NewProfileRequest
+	(*ProfileResponse)(nil),   // 2: profile.ProfileResponse
 }
 var file_profile_profile_service_proto_depIdxs = []int32{
 	0, // 0: profile.ProfileService.Get:input_type -> profile.ProfileRequest
-	1, // 1: profile.ProfileService.Get:output_type -> profile.ProfileResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: profile.ProfileService.Create:input_type -> profile.NewProfileRequest
+	2, // 2: profile.ProfileService.Get:output_type -> profile.ProfileResponse
+	2, // 3: profile.ProfileService.Create:output_type -> profile.ProfileResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
