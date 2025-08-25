@@ -228,6 +228,8 @@ type FriendDetails struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
+	ProfileId1    string                 `protobuf:"bytes,11,opt,name=profile_id1,json=profileId1,proto3" json:"profile_id1,omitempty"`
+	ProfileId2    string                 `protobuf:"bytes,12,opt,name=profile_id2,json=profileId2,proto3" json:"profile_id2,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -330,6 +332,20 @@ func (x *FriendDetails) GetDeletedAt() *timestamppb.Timestamp {
 		return x.DeletedAt
 	}
 	return nil
+}
+
+func (x *FriendDetails) GetProfileId1() string {
+	if x != nil {
+		return x.ProfileId1
+	}
+	return ""
+}
+
+func (x *FriendDetails) GetProfileId2() string {
+	if x != nil {
+		return x.ProfileId2
+	}
+	return ""
 }
 
 type GetAllRequest struct {
@@ -590,7 +606,7 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
 	"deleted_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01B\r\n" +
-	"\v_deleted_at\"\x8b\x03\n" +
+	"\v_deleted_at\"\xcd\x03\n" +
 	"\rFriendDetails\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -606,7 +622,11 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
 	"deleted_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01B\r\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12\x1f\n" +
+	"\vprofile_id1\x18\v \x01(\tR\n" +
+	"profileId1\x12\x1f\n" +
+	"\vprofile_id2\x18\f \x01(\tR\n" +
+	"profileId2B\r\n" +
 	"\v_deleted_at\".\n" +
 	"\rGetAllRequest\x12\x1d\n" +
 	"\n" +

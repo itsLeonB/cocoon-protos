@@ -41,6 +41,8 @@ message FriendDetails {
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp updated_at = 9;
   optional google.protobuf.Timestamp deleted_at = 10;
+  string profile_id1 = 11;
+  string profile_id2 = 12;
 }
 
 message GetAllRequest {
