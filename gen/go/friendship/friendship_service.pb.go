@@ -25,40 +25,35 @@ var File_friendship_friendship_service_proto protoreflect.FileDescriptor
 const file_friendship_friendship_service_proto_rawDesc = "" +
 	"\n" +
 	"#friendship/friendship_service.proto\x12\n" +
-	"friendship\x1a#friendship/friendship_message.proto2\x8b\x03\n" +
+	"friendship\x1a#friendship/friendship_message.proto2\xc4\x02\n" +
 	"\x11FriendshipService\x12\\\n" +
 	"\x0fCreateAnonymous\x12).friendship.NewAnonymousFriendshipRequest\x1a\x1e.friendship.FriendshipResponse\x12?\n" +
 	"\x06GetAll\x12\x19.friendship.GetAllRequest\x1a\x1a.friendship.GetAllResponse\x12F\n" +
 	"\n" +
 	"GetDetails\x12\x1d.friendship.GetDetailsRequest\x1a\x19.friendship.FriendDetails\x12H\n" +
-	"\tIsFriends\x12\x1c.friendship.IsFriendsRequest\x1a\x1d.friendship.IsFriendsResponse\x12E\n" +
-	"\bGetNames\x12\x1b.friendship.GetNamesRequest\x1a\x1c.friendship.GetNamesResponseB5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
+	"\tIsFriends\x12\x1c.friendship.IsFriendsRequest\x1a\x1d.friendship.IsFriendsResponseB5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
 
 var file_friendship_friendship_service_proto_goTypes = []any{
 	(*NewAnonymousFriendshipRequest)(nil), // 0: friendship.NewAnonymousFriendshipRequest
 	(*GetAllRequest)(nil),                 // 1: friendship.GetAllRequest
 	(*GetDetailsRequest)(nil),             // 2: friendship.GetDetailsRequest
 	(*IsFriendsRequest)(nil),              // 3: friendship.IsFriendsRequest
-	(*GetNamesRequest)(nil),               // 4: friendship.GetNamesRequest
-	(*FriendshipResponse)(nil),            // 5: friendship.FriendshipResponse
-	(*GetAllResponse)(nil),                // 6: friendship.GetAllResponse
-	(*FriendDetails)(nil),                 // 7: friendship.FriendDetails
-	(*IsFriendsResponse)(nil),             // 8: friendship.IsFriendsResponse
-	(*GetNamesResponse)(nil),              // 9: friendship.GetNamesResponse
+	(*FriendshipResponse)(nil),            // 4: friendship.FriendshipResponse
+	(*GetAllResponse)(nil),                // 5: friendship.GetAllResponse
+	(*FriendDetails)(nil),                 // 6: friendship.FriendDetails
+	(*IsFriendsResponse)(nil),             // 7: friendship.IsFriendsResponse
 }
 var file_friendship_friendship_service_proto_depIdxs = []int32{
 	0, // 0: friendship.FriendshipService.CreateAnonymous:input_type -> friendship.NewAnonymousFriendshipRequest
 	1, // 1: friendship.FriendshipService.GetAll:input_type -> friendship.GetAllRequest
 	2, // 2: friendship.FriendshipService.GetDetails:input_type -> friendship.GetDetailsRequest
 	3, // 3: friendship.FriendshipService.IsFriends:input_type -> friendship.IsFriendsRequest
-	4, // 4: friendship.FriendshipService.GetNames:input_type -> friendship.GetNamesRequest
-	5, // 5: friendship.FriendshipService.CreateAnonymous:output_type -> friendship.FriendshipResponse
-	6, // 6: friendship.FriendshipService.GetAll:output_type -> friendship.GetAllResponse
-	7, // 7: friendship.FriendshipService.GetDetails:output_type -> friendship.FriendDetails
-	8, // 8: friendship.FriendshipService.IsFriends:output_type -> friendship.IsFriendsResponse
-	9, // 9: friendship.FriendshipService.GetNames:output_type -> friendship.GetNamesResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
+	4, // 4: friendship.FriendshipService.CreateAnonymous:output_type -> friendship.FriendshipResponse
+	5, // 5: friendship.FriendshipService.GetAll:output_type -> friendship.GetAllResponse
+	6, // 6: friendship.FriendshipService.GetDetails:output_type -> friendship.FriendDetails
+	7, // 7: friendship.FriendshipService.IsFriends:output_type -> friendship.IsFriendsResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

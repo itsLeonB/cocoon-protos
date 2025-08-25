@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProfileService_Get_FullMethodName    = "/profile.ProfileService/Get"
-	ProfileService_Create_FullMethodName = "/profile.ProfileService/Create"
+	ProfileService_Get_FullMethodName      = "/profile.ProfileService/Get"
+	ProfileService_Create_FullMethodName   = "/profile.ProfileService/Create"
+	ProfileService_GetNames_FullMethodName = "/profile.ProfileService/GetNames"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -29,6 +30,7 @@ const (
 type ProfileServiceClient interface {
 	Get(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
 	Create(ctx context.Context, in *NewProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
+	GetNames(ctx context.Context, in *GetNamesRequest, opts ...grpc.CallOption) (*GetNamesResponse, error)
 }
 
 type profileServiceClient struct {
@@ -59,12 +61,23 @@ func (c *profileServiceClient) Create(ctx context.Context, in *NewProfileRequest
 	return out, nil
 }
 
+func (c *profileServiceClient) GetNames(ctx context.Context, in *GetNamesRequest, opts ...grpc.CallOption) (*GetNamesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetNamesResponse)
+	err := c.cc.Invoke(ctx, ProfileService_GetNames_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProfileServiceServer is the server API for ProfileService service.
 // All implementations must embed UnimplementedProfileServiceServer
 // for forward compatibility.
 type ProfileServiceServer interface {
 	Get(context.Context, *ProfileRequest) (*ProfileResponse, error)
 	Create(context.Context, *NewProfileRequest) (*ProfileResponse, error)
+	GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error)
 	mustEmbedUnimplementedProfileServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedProfileServiceServer) Get(context.Context, *ProfileRequest) (
 }
 func (UnimplementedProfileServiceServer) Create(context.Context, *NewProfileRequest) (*ProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedProfileServiceServer) GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNames not implemented")
 }
 func (UnimplementedProfileServiceServer) mustEmbedUnimplementedProfileServiceServer() {}
 func (UnimplementedProfileServiceServer) testEmbeddedByValue()                        {}
@@ -138,6 +154,24 @@ func _ProfileService_Create_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProfileService_GetNames_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNamesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetNames(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetNames_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetNames(ctx, req.(*GetNamesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProfileService_ServiceDesc is the grpc.ServiceDesc for ProfileService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _ProfileService_Create_Handler,
+		},
+		{
+			MethodName: "GetNames",
+			Handler:    _ProfileService_GetNames_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

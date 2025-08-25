@@ -11,5 +11,4 @@ service FriendshipService {
   rpc GetAll (GetAllRequest) returns (GetAllResponse);
   rpc GetDetails (GetDetailsRequest) returns (FriendDetails);
   rpc IsFriends (IsFriendsRequest) returns (IsFriendsResponse);
-  rpc GetNames (GetNamesRequest) returns (GetNamesResponse);
 }

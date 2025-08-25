@@ -23,7 +23,6 @@ const (
 	FriendshipService_GetAll_FullMethodName          = "/friendship.FriendshipService/GetAll"
 	FriendshipService_GetDetails_FullMethodName      = "/friendship.FriendshipService/GetDetails"
 	FriendshipService_IsFriends_FullMethodName       = "/friendship.FriendshipService/IsFriends"
-	FriendshipService_GetNames_FullMethodName        = "/friendship.FriendshipService/GetNames"
 )
 
 // FriendshipServiceClient is the client API for FriendshipService service.
@@ -34,7 +33,6 @@ type FriendshipServiceClient interface {
 	GetAll(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllResponse, error)
 	GetDetails(ctx context.Context, in *GetDetailsRequest, opts ...grpc.CallOption) (*FriendDetails, error)
 	IsFriends(ctx context.Context, in *IsFriendsRequest, opts ...grpc.CallOption) (*IsFriendsResponse, error)
-	GetNames(ctx context.Context, in *GetNamesRequest, opts ...grpc.CallOption) (*GetNamesResponse, error)
 }
 
 type friendshipServiceClient struct {
@@ -85,16 +83,6 @@ func (c *friendshipServiceClient) IsFriends(ctx context.Context, in *IsFriendsRe
 	return out, nil
 }
 
-func (c *friendshipServiceClient) GetNames(ctx context.Context, in *GetNamesRequest, opts ...grpc.CallOption) (*GetNamesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamesResponse)
-	err := c.cc.Invoke(ctx, FriendshipService_GetNames_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // FriendshipServiceServer is the server API for FriendshipService service.
 // All implementations must embed UnimplementedFriendshipServiceServer
 // for forward compatibility.
@@ -103,7 +91,6 @@ type FriendshipServiceServer interface {
 	GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error)
 	GetDetails(context.Context, *GetDetailsRequest) (*FriendDetails, error)
 	IsFriends(context.Context, *IsFriendsRequest) (*IsFriendsResponse, error)
-	GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error)
 	mustEmbedUnimplementedFriendshipServiceServer()
 }
 
@@ -125,9 +112,6 @@ func (UnimplementedFriendshipServiceServer) GetDetails(context.Context, *GetDeta
 }
 func (UnimplementedFriendshipServiceServer) IsFriends(context.Context, *IsFriendsRequest) (*IsFriendsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsFriends not implemented")
-}
-func (UnimplementedFriendshipServiceServer) GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNames not implemented")
 }
 func (UnimplementedFriendshipServiceServer) mustEmbedUnimplementedFriendshipServiceServer() {}
 func (UnimplementedFriendshipServiceServer) testEmbeddedByValue()                           {}
@@ -222,24 +206,6 @@ func _FriendshipService_IsFriends_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FriendshipService_GetNames_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FriendshipServiceServer).GetNames(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: FriendshipService_GetNames_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FriendshipServiceServer).GetNames(ctx, req.(*GetNamesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // FriendshipService_ServiceDesc is the grpc.ServiceDesc for FriendshipService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -262,10 +228,6 @@ var FriendshipService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IsFriends",
 			Handler:    _FriendshipService_IsFriends_Handler,
-		},
-		{
-			MethodName: "GetNames",
-			Handler:    _FriendshipService_GetNames_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -66,11 +66,3 @@ message IsFriendsRequest {
 message IsFriendsResponse {
   bool is_friends = 1;
 }
-
-message GetNamesRequest {
-  repeated string profile_ids = 1;
-}
-
-message GetNamesResponse {
-  map<string, string> names_by_profile_id = 1; // profile_id -> name
-}

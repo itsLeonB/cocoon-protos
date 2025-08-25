@@ -584,94 +584,6 @@ func (x *IsFriendsResponse) GetIsFriends() bool {
 	return false
 }
 
-type GetNamesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProfileIds    []string               `protobuf:"bytes,1,rep,name=profile_ids,json=profileIds,proto3" json:"profile_ids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetNamesRequest) Reset() {
-	*x = GetNamesRequest{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetNamesRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNamesRequest) ProtoMessage() {}
-
-func (x *GetNamesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNamesRequest.ProtoReflect.Descriptor instead.
-func (*GetNamesRequest) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *GetNamesRequest) GetProfileIds() []string {
-	if x != nil {
-		return x.ProfileIds
-	}
-	return nil
-}
-
-type GetNamesResponse struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	NamesByProfileId map[string]string      `protobuf:"bytes,1,rep,name=names_by_profile_id,json=namesByProfileId,proto3" json:"names_by_profile_id,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // profile_id -> name
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
-}
-
-func (x *GetNamesResponse) Reset() {
-	*x = GetNamesResponse{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetNamesResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetNamesResponse) ProtoMessage() {}
-
-func (x *GetNamesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetNamesResponse.ProtoReflect.Descriptor instead.
-func (*GetNamesResponse) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *GetNamesResponse) GetNamesByProfileId() map[string]string {
-	if x != nil {
-		return x.NamesByProfileId
-	}
-	return nil
-}
-
 var File_friendship_friendship_message_proto protoreflect.FileDescriptor
 
 const file_friendship_friendship_message_proto_rawDesc = "" +
@@ -732,15 +644,7 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"profileId2\"2\n" +
 	"\x11IsFriendsResponse\x12\x1d\n" +
 	"\n" +
-	"is_friends\x18\x01 \x01(\bR\tisFriends\"2\n" +
-	"\x0fGetNamesRequest\x12\x1f\n" +
-	"\vprofile_ids\x18\x01 \x03(\tR\n" +
-	"profileIds\"\xba\x01\n" +
-	"\x10GetNamesResponse\x12a\n" +
-	"\x13names_by_profile_id\x18\x01 \x03(\v22.friendship.GetNamesResponse.NamesByProfileIdEntryR\x10namesByProfileId\x1aC\n" +
-	"\x15NamesByProfileIdEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*$\n" +
+	"is_friends\x18\x01 \x01(\bR\tisFriends*$\n" +
 	"\x0eFriendshipType\x12\b\n" +
 	"\x04ANON\x10\x00\x12\b\n" +
 	"\x04REAL\x10\x01B5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
@@ -758,7 +662,7 @@ func file_friendship_friendship_message_proto_rawDescGZIP() []byte {
 }
 
 var file_friendship_friendship_message_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_friendship_friendship_message_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_friendship_friendship_message_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_friendship_friendship_message_proto_goTypes = []any{
 	(FriendshipType)(0),                   // 0: friendship.FriendshipType
 	(*NewAnonymousFriendshipRequest)(nil), // 1: friendship.NewAnonymousFriendshipRequest
@@ -769,27 +673,23 @@ var file_friendship_friendship_message_proto_goTypes = []any{
 	(*GetDetailsRequest)(nil),             // 6: friendship.GetDetailsRequest
 	(*IsFriendsRequest)(nil),              // 7: friendship.IsFriendsRequest
 	(*IsFriendsResponse)(nil),             // 8: friendship.IsFriendsResponse
-	(*GetNamesRequest)(nil),               // 9: friendship.GetNamesRequest
-	(*GetNamesResponse)(nil),              // 10: friendship.GetNamesResponse
-	nil,                                   // 11: friendship.GetNamesResponse.NamesByProfileIdEntry
-	(*timestamppb.Timestamp)(nil),         // 12: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil),         // 9: google.protobuf.Timestamp
 }
 var file_friendship_friendship_message_proto_depIdxs = []int32{
-	0,  // 0: friendship.FriendshipResponse.type:type_name -> friendship.FriendshipType
-	12, // 1: friendship.FriendshipResponse.created_at:type_name -> google.protobuf.Timestamp
-	12, // 2: friendship.FriendshipResponse.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 3: friendship.FriendshipResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	0,  // 4: friendship.FriendDetails.type:type_name -> friendship.FriendshipType
-	12, // 5: friendship.FriendDetails.created_at:type_name -> google.protobuf.Timestamp
-	12, // 6: friendship.FriendDetails.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 7: friendship.FriendDetails.deleted_at:type_name -> google.protobuf.Timestamp
-	2,  // 8: friendship.GetAllResponse.friendships:type_name -> friendship.FriendshipResponse
-	11, // 9: friendship.GetNamesResponse.names_by_profile_id:type_name -> friendship.GetNamesResponse.NamesByProfileIdEntry
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	0, // 0: friendship.FriendshipResponse.type:type_name -> friendship.FriendshipType
+	9, // 1: friendship.FriendshipResponse.created_at:type_name -> google.protobuf.Timestamp
+	9, // 2: friendship.FriendshipResponse.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 3: friendship.FriendshipResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	0, // 4: friendship.FriendDetails.type:type_name -> friendship.FriendshipType
+	9, // 5: friendship.FriendDetails.created_at:type_name -> google.protobuf.Timestamp
+	9, // 6: friendship.FriendDetails.updated_at:type_name -> google.protobuf.Timestamp
+	9, // 7: friendship.FriendDetails.deleted_at:type_name -> google.protobuf.Timestamp
+	2, // 8: friendship.GetAllResponse.friendships:type_name -> friendship.FriendshipResponse
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_friendship_friendship_message_proto_init() }
@@ -805,7 +705,7 @@ func file_friendship_friendship_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_friendship_friendship_message_proto_rawDesc), len(file_friendship_friendship_message_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

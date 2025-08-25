@@ -202,6 +202,94 @@ func (x *NewProfileRequest) GetName() string {
 	return ""
 }
 
+type GetNamesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ProfileIds    []string               `protobuf:"bytes,1,rep,name=profile_ids,json=profileIds,proto3" json:"profile_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetNamesRequest) Reset() {
+	*x = GetNamesRequest{}
+	mi := &file_profile_profile_message_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetNamesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNamesRequest) ProtoMessage() {}
+
+func (x *GetNamesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_profile_message_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNamesRequest.ProtoReflect.Descriptor instead.
+func (*GetNamesRequest) Descriptor() ([]byte, []int) {
+	return file_profile_profile_message_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetNamesRequest) GetProfileIds() []string {
+	if x != nil {
+		return x.ProfileIds
+	}
+	return nil
+}
+
+type GetNamesResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	NamesByProfileId map[string]string      `protobuf:"bytes,1,rep,name=names_by_profile_id,json=namesByProfileId,proto3" json:"names_by_profile_id,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // profile_id -> name
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GetNamesResponse) Reset() {
+	*x = GetNamesResponse{}
+	mi := &file_profile_profile_message_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetNamesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNamesResponse) ProtoMessage() {}
+
+func (x *GetNamesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_profile_message_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNamesResponse.ProtoReflect.Descriptor instead.
+func (*GetNamesResponse) Descriptor() ([]byte, []int) {
+	return file_profile_profile_message_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetNamesResponse) GetNamesByProfileId() map[string]string {
+	if x != nil {
+		return x.NamesByProfileId
+	}
+	return nil
+}
+
 var File_profile_profile_message_proto protoreflect.FileDescriptor
 
 const file_profile_profile_message_proto_rawDesc = "" +
@@ -225,7 +313,15 @@ const file_profile_profile_message_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tH\x00R\x06userId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04nameB\n" +
 	"\n" +
-	"\b_user_idB2Z0github.com/itsLeonB/cocoon-protos/gen/go/profileb\x06proto3"
+	"\b_user_id\"2\n" +
+	"\x0fGetNamesRequest\x12\x1f\n" +
+	"\vprofile_ids\x18\x01 \x03(\tR\n" +
+	"profileIds\"\xb7\x01\n" +
+	"\x10GetNamesResponse\x12^\n" +
+	"\x13names_by_profile_id\x18\x01 \x03(\v2/.profile.GetNamesResponse.NamesByProfileIdEntryR\x10namesByProfileId\x1aC\n" +
+	"\x15NamesByProfileIdEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B2Z0github.com/itsLeonB/cocoon-protos/gen/go/profileb\x06proto3"
 
 var (
 	file_profile_profile_message_proto_rawDescOnce sync.Once
@@ -239,22 +335,26 @@ func file_profile_profile_message_proto_rawDescGZIP() []byte {
 	return file_profile_profile_message_proto_rawDescData
 }
 
-var file_profile_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_profile_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_profile_profile_message_proto_goTypes = []any{
 	(*ProfileRequest)(nil),        // 0: profile.ProfileRequest
 	(*ProfileResponse)(nil),       // 1: profile.ProfileResponse
 	(*NewProfileRequest)(nil),     // 2: profile.NewProfileRequest
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(*GetNamesRequest)(nil),       // 3: profile.GetNamesRequest
+	(*GetNamesResponse)(nil),      // 4: profile.GetNamesResponse
+	nil,                           // 5: profile.GetNamesResponse.NamesByProfileIdEntry
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_profile_profile_message_proto_depIdxs = []int32{
-	3, // 0: profile.ProfileResponse.created_at:type_name -> google.protobuf.Timestamp
-	3, // 1: profile.ProfileResponse.updated_at:type_name -> google.protobuf.Timestamp
-	3, // 2: profile.ProfileResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	6, // 0: profile.ProfileResponse.created_at:type_name -> google.protobuf.Timestamp
+	6, // 1: profile.ProfileResponse.updated_at:type_name -> google.protobuf.Timestamp
+	6, // 2: profile.ProfileResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	5, // 3: profile.GetNamesResponse.names_by_profile_id:type_name -> profile.GetNamesResponse.NamesByProfileIdEntry
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_profile_profile_message_proto_init() }
@@ -270,7 +370,7 @@ func file_profile_profile_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_profile_profile_message_proto_rawDesc), len(file_profile_profile_message_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
