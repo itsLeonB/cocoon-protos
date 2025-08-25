@@ -24,7 +24,7 @@ const (
 
 type ProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProfileID     string                 `protobuf:"bytes,1,opt,name=profileID,proto3" json:"profileID,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,21 +59,21 @@ func (*ProfileRequest) Descriptor() ([]byte, []int) {
 	return file_profile_profile_message_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ProfileRequest) GetProfileID() string {
+func (x *ProfileRequest) GetProfileId() string {
 	if x != nil {
-		return x.ProfileID
+		return x.ProfileId
 	}
 	return ""
 }
 
 type ProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -108,16 +108,16 @@ func (*ProfileResponse) Descriptor() ([]byte, []int) {
 	return file_profile_profile_message_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ProfileResponse) GetUserId() string {
+func (x *ProfileResponse) GetId() string {
 	if x != nil {
-		return x.UserId
+		return x.Id
 	}
 	return ""
 }
 
-func (x *ProfileResponse) GetProfileId() string {
+func (x *ProfileResponse) GetUserId() string {
 	if x != nil {
-		return x.ProfileId
+		return x.UserId
 	}
 	return ""
 }
@@ -206,20 +206,21 @@ var File_profile_profile_message_proto protoreflect.FileDescriptor
 
 const file_profile_profile_message_proto_rawDesc = "" +
 	"\n" +
-	"\x1dprofile/profile_message.proto\x12\aprofile\x1a\x1fgoogle/protobuf/timestamp.proto\".\n" +
-	"\x0eProfileRequest\x12\x1c\n" +
-	"\tprofileID\x18\x01 \x01(\tR\tprofileID\"\x8e\x02\n" +
-	"\x0fProfileResponse\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
+	"\x1dprofile/profile_message.proto\x12\aprofile\x1a\x1fgoogle/protobuf/timestamp.proto\"/\n" +
+	"\x0eProfileRequest\x12\x1d\n" +
 	"\n" +
-	"profile_id\x18\x02 \x01(\tR\tprofileId\x12\x12\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\"\x93\x02\n" +
+	"\x0fProfileResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
-	"deleted_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"Q\n" +
+	"deleted_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01B\r\n" +
+	"\v_deleted_at\"Q\n" +
 	"\x11NewProfileRequest\x12\x1c\n" +
 	"\auser_id\x18\x01 \x01(\tH\x00R\x06userId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04nameB\n" +
@@ -261,6 +262,7 @@ func file_profile_profile_message_proto_init() {
 	if File_profile_profile_message_proto != nil {
 		return
 	}
+	file_profile_profile_message_proto_msgTypes[1].OneofWrappers = []any{}
 	file_profile_profile_message_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

@@ -9,5 +9,5 @@ message VerifyTokenRequest {
 }
 
 message AuthData {
-  string profileID = 1;
+  string profile_id = 1;
 }

@@ -67,7 +67,7 @@ func (x *VerifyTokenRequest) GetToken() string {
 
 type AuthData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProfileID     string                 `protobuf:"bytes,1,opt,name=profileID,proto3" json:"profileID,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -102,9 +102,9 @@ func (*AuthData) Descriptor() ([]byte, []int) {
 	return file_auth_auth_message_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *AuthData) GetProfileID() string {
+func (x *AuthData) GetProfileId() string {
 	if x != nil {
-		return x.ProfileID
+		return x.ProfileId
 	}
 	return ""
 }
@@ -115,9 +115,10 @@ const file_auth_auth_message_proto_rawDesc = "" +
 	"\n" +
 	"\x17auth/auth_message.proto\x12\x04auth\"*\n" +
 	"\x12VerifyTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"(\n" +
-	"\bAuthData\x12\x1c\n" +
-	"\tprofileID\x18\x01 \x01(\tR\tprofileIDB/Z-github.com/itsLeonB/cocoon-protos/gen/go/authb\x06proto3"
+	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
+	"\bAuthData\x12\x1d\n" +
+	"\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileIdB/Z-github.com/itsLeonB/cocoon-protos/gen/go/authb\x06proto3"
 
 var (
 	file_auth_auth_message_proto_rawDescOnce sync.Once
