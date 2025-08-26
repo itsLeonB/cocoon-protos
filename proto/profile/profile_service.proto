@@ -10,4 +10,5 @@ service ProfileService {
   rpc Get (ProfileRequest) returns (ProfileResponse);
   rpc Create (NewProfileRequest) returns (ProfileResponse);
   rpc GetNames (GetNamesRequest) returns (GetNamesResponse);
+  rpc GetByIDs (GetByIDsRequest) returns (GetByIDsResponse);
 }
