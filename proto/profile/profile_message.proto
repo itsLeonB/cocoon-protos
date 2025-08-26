@@ -17,6 +17,7 @@ message ProfileResponse {
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
   optional google.protobuf.Timestamp deleted_at = 6;
+  bool is_anonymous = 7;
 }
 
 message NewProfileRequest {
@@ -30,4 +31,12 @@ message GetNamesRequest {
 
 message GetNamesResponse {
   map<string, string> names_by_profile_id = 1; // profile_id -> name
+}
+
+message GetByIDsRequest {
+  repeated string profile_ids = 1;
+}
+
+message GetByIDsResponse {
+  repeated ProfileResponse profiles = 1;
 }
