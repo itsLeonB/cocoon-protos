@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "auth/v1/auth_message.proto";
+import "auth/v1/login_message.proto";
+import "auth/v1/register_message.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;auth";
+
+service AuthService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
+}

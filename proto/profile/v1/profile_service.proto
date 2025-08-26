@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package profile.v1;
+
+import "profile/v1/profile_message.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profile";
+
+service ProfileService {
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc GetNames(GetNamesRequest) returns (GetNamesResponse);
+  rpc GetByIDs(GetByIDsRequest) returns (GetByIDsResponse);
+}
