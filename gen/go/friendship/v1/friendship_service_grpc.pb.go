@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: friendship/friendship_service.proto
+// source: friendship/v1/friendship_service.proto
 
 package friendship
 
@@ -19,19 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FriendshipService_CreateAnonymous_FullMethodName = "/friendship.FriendshipService/CreateAnonymous"
-	FriendshipService_GetAll_FullMethodName          = "/friendship.FriendshipService/GetAll"
-	FriendshipService_GetDetails_FullMethodName      = "/friendship.FriendshipService/GetDetails"
-	FriendshipService_IsFriends_FullMethodName       = "/friendship.FriendshipService/IsFriends"
+	FriendshipService_CreateAnonymous_FullMethodName = "/friendship.v1.FriendshipService/CreateAnonymous"
+	FriendshipService_GetAll_FullMethodName          = "/friendship.v1.FriendshipService/GetAll"
+	FriendshipService_GetDetails_FullMethodName      = "/friendship.v1.FriendshipService/GetDetails"
+	FriendshipService_IsFriends_FullMethodName       = "/friendship.v1.FriendshipService/IsFriends"
 )
 
 // FriendshipServiceClient is the client API for FriendshipService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FriendshipServiceClient interface {
-	CreateAnonymous(ctx context.Context, in *NewAnonymousFriendshipRequest, opts ...grpc.CallOption) (*FriendshipResponse, error)
+	CreateAnonymous(ctx context.Context, in *CreateAnonymousRequest, opts ...grpc.CallOption) (*CreateAnonymousResponse, error)
 	GetAll(ctx context.Context, in *GetAllRequest, opts ...grpc.CallOption) (*GetAllResponse, error)
-	GetDetails(ctx context.Context, in *GetDetailsRequest, opts ...grpc.CallOption) (*FriendDetails, error)
+	GetDetails(ctx context.Context, in *GetDetailsRequest, opts ...grpc.CallOption) (*GetDetailsResponse, error)
 	IsFriends(ctx context.Context, in *IsFriendsRequest, opts ...grpc.CallOption) (*IsFriendsResponse, error)
 }
 
@@ -43,9 +43,9 @@ func NewFriendshipServiceClient(cc grpc.ClientConnInterface) FriendshipServiceCl
 	return &friendshipServiceClient{cc}
 }
 
-func (c *friendshipServiceClient) CreateAnonymous(ctx context.Context, in *NewAnonymousFriendshipRequest, opts ...grpc.CallOption) (*FriendshipResponse, error) {
+func (c *friendshipServiceClient) CreateAnonymous(ctx context.Context, in *CreateAnonymousRequest, opts ...grpc.CallOption) (*CreateAnonymousResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FriendshipResponse)
+	out := new(CreateAnonymousResponse)
 	err := c.cc.Invoke(ctx, FriendshipService_CreateAnonymous_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -63,9 +63,9 @@ func (c *friendshipServiceClient) GetAll(ctx context.Context, in *GetAllRequest,
 	return out, nil
 }
 
-func (c *friendshipServiceClient) GetDetails(ctx context.Context, in *GetDetailsRequest, opts ...grpc.CallOption) (*FriendDetails, error) {
+func (c *friendshipServiceClient) GetDetails(ctx context.Context, in *GetDetailsRequest, opts ...grpc.CallOption) (*GetDetailsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FriendDetails)
+	out := new(GetDetailsResponse)
 	err := c.cc.Invoke(ctx, FriendshipService_GetDetails_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -87,9 +87,9 @@ func (c *friendshipServiceClient) IsFriends(ctx context.Context, in *IsFriendsRe
 // All implementations must embed UnimplementedFriendshipServiceServer
 // for forward compatibility.
 type FriendshipServiceServer interface {
-	CreateAnonymous(context.Context, *NewAnonymousFriendshipRequest) (*FriendshipResponse, error)
+	CreateAnonymous(context.Context, *CreateAnonymousRequest) (*CreateAnonymousResponse, error)
 	GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error)
-	GetDetails(context.Context, *GetDetailsRequest) (*FriendDetails, error)
+	GetDetails(context.Context, *GetDetailsRequest) (*GetDetailsResponse, error)
 	IsFriends(context.Context, *IsFriendsRequest) (*IsFriendsResponse, error)
 	mustEmbedUnimplementedFriendshipServiceServer()
 }
@@ -101,13 +101,13 @@ type FriendshipServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedFriendshipServiceServer struct{}
 
-func (UnimplementedFriendshipServiceServer) CreateAnonymous(context.Context, *NewAnonymousFriendshipRequest) (*FriendshipResponse, error) {
+func (UnimplementedFriendshipServiceServer) CreateAnonymous(context.Context, *CreateAnonymousRequest) (*CreateAnonymousResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAnonymous not implemented")
 }
 func (UnimplementedFriendshipServiceServer) GetAll(context.Context, *GetAllRequest) (*GetAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
 }
-func (UnimplementedFriendshipServiceServer) GetDetails(context.Context, *GetDetailsRequest) (*FriendDetails, error) {
+func (UnimplementedFriendshipServiceServer) GetDetails(context.Context, *GetDetailsRequest) (*GetDetailsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDetails not implemented")
 }
 func (UnimplementedFriendshipServiceServer) IsFriends(context.Context, *IsFriendsRequest) (*IsFriendsResponse, error) {
@@ -135,7 +135,7 @@ func RegisterFriendshipServiceServer(s grpc.ServiceRegistrar, srv FriendshipServ
 }
 
 func _FriendshipService_CreateAnonymous_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NewAnonymousFriendshipRequest)
+	in := new(CreateAnonymousRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -147,7 +147,7 @@ func _FriendshipService_CreateAnonymous_Handler(srv interface{}, ctx context.Con
 		FullMethod: FriendshipService_CreateAnonymous_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FriendshipServiceServer).CreateAnonymous(ctx, req.(*NewAnonymousFriendshipRequest))
+		return srv.(FriendshipServiceServer).CreateAnonymous(ctx, req.(*CreateAnonymousRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -210,7 +210,7 @@ func _FriendshipService_IsFriends_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FriendshipService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "friendship.FriendshipService",
+	ServiceName: "friendship.v1.FriendshipService",
 	HandlerType: (*FriendshipServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -231,5 +231,5 @@ var FriendshipService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "friendship/friendship_service.proto",
+	Metadata: "friendship/v1/friendship_service.proto",
 }

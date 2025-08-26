@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v3.21.12
-// source: friendship/friendship_message.proto
+// source: friendship/v1/friendship_message.proto
 
 package friendship
 
@@ -26,19 +26,22 @@ const (
 type FriendshipType int32
 
 const (
-	FriendshipType_ANON FriendshipType = 0
-	FriendshipType_REAL FriendshipType = 1
+	FriendshipType_FRIENDSHIP_TYPE_UNSPECIFIED FriendshipType = 0
+	FriendshipType_FRIENDSHIP_TYPE_ANON        FriendshipType = 1
+	FriendshipType_FRIENDSHIP_TYPE_REAL        FriendshipType = 2
 )
 
 // Enum value maps for FriendshipType.
 var (
 	FriendshipType_name = map[int32]string{
-		0: "ANON",
-		1: "REAL",
+		0: "FRIENDSHIP_TYPE_UNSPECIFIED",
+		1: "FRIENDSHIP_TYPE_ANON",
+		2: "FRIENDSHIP_TYPE_REAL",
 	}
 	FriendshipType_value = map[string]int32{
-		"ANON": 0,
-		"REAL": 1,
+		"FRIENDSHIP_TYPE_UNSPECIFIED": 0,
+		"FRIENDSHIP_TYPE_ANON":        1,
+		"FRIENDSHIP_TYPE_REAL":        2,
 	}
 )
 
@@ -53,11 +56,11 @@ func (x FriendshipType) String() string {
 }
 
 func (FriendshipType) Descriptor() protoreflect.EnumDescriptor {
-	return file_friendship_friendship_message_proto_enumTypes[0].Descriptor()
+	return file_friendship_v1_friendship_message_proto_enumTypes[0].Descriptor()
 }
 
 func (FriendshipType) Type() protoreflect.EnumType {
-	return &file_friendship_friendship_message_proto_enumTypes[0]
+	return &file_friendship_v1_friendship_message_proto_enumTypes[0]
 }
 
 func (x FriendshipType) Number() protoreflect.EnumNumber {
@@ -66,11 +69,11 @@ func (x FriendshipType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FriendshipType.Descriptor instead.
 func (FriendshipType) EnumDescriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{0}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{0}
 }
 
 // Request to create new anonymous friendship
-type NewAnonymousFriendshipRequest struct {
+type CreateAnonymousRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProfileId     string                 `protobuf:"bytes,1,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"` // required in API layer, not enforced by proto
@@ -78,21 +81,21 @@ type NewAnonymousFriendshipRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NewAnonymousFriendshipRequest) Reset() {
-	*x = NewAnonymousFriendshipRequest{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[0]
+func (x *CreateAnonymousRequest) Reset() {
+	*x = CreateAnonymousRequest{}
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NewAnonymousFriendshipRequest) String() string {
+func (x *CreateAnonymousRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NewAnonymousFriendshipRequest) ProtoMessage() {}
+func (*CreateAnonymousRequest) ProtoMessage() {}
 
-func (x *NewAnonymousFriendshipRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[0]
+func (x *CreateAnonymousRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -103,19 +106,19 @@ func (x *NewAnonymousFriendshipRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NewAnonymousFriendshipRequest.ProtoReflect.Descriptor instead.
-func (*NewAnonymousFriendshipRequest) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use CreateAnonymousRequest.ProtoReflect.Descriptor instead.
+func (*CreateAnonymousRequest) Descriptor() ([]byte, []int) {
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *NewAnonymousFriendshipRequest) GetProfileId() string {
+func (x *CreateAnonymousRequest) GetProfileId() string {
 	if x != nil {
 		return x.ProfileId
 	}
 	return ""
 }
 
-func (x *NewAnonymousFriendshipRequest) GetName() string {
+func (x *CreateAnonymousRequest) GetName() string {
 	if x != nil {
 		return x.Name
 	}
@@ -126,19 +129,19 @@ func (x *NewAnonymousFriendshipRequest) GetName() string {
 type FriendshipResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Type          FriendshipType         `protobuf:"varint,2,opt,name=type,proto3,enum=friendship.FriendshipType" json:"type,omitempty"`
+	Type          FriendshipType         `protobuf:"varint,2,opt,name=type,proto3,enum=friendship.v1.FriendshipType" json:"type,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,3,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	ProfileName   string                 `protobuf:"bytes,4,opt,name=profile_name,json=profileName,proto3" json:"profile_name,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FriendshipResponse) Reset() {
 	*x = FriendshipResponse{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[1]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -150,7 +153,7 @@ func (x *FriendshipResponse) String() string {
 func (*FriendshipResponse) ProtoMessage() {}
 
 func (x *FriendshipResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[1]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -163,7 +166,7 @@ func (x *FriendshipResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendshipResponse.ProtoReflect.Descriptor instead.
 func (*FriendshipResponse) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{1}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *FriendshipResponse) GetId() string {
@@ -177,7 +180,7 @@ func (x *FriendshipResponse) GetType() FriendshipType {
 	if x != nil {
 		return x.Type
 	}
-	return FriendshipType_ANON
+	return FriendshipType_FRIENDSHIP_TYPE_UNSPECIFIED
 }
 
 func (x *FriendshipResponse) GetProfileId() string {
@@ -215,40 +218,28 @@ func (x *FriendshipResponse) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-// Detailed info about a friend
-type FriendDetails struct {
+type CreateAnonymousResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Type          FriendshipType         `protobuf:"varint,4,opt,name=type,proto3,enum=friendship.FriendshipType" json:"type,omitempty"`
-	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
-	Phone         string                 `protobuf:"bytes,6,opt,name=phone,proto3" json:"phone,omitempty"`
-	Avatar        string                 `protobuf:"bytes,7,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	ProfileId1    string                 `protobuf:"bytes,11,opt,name=profile_id1,json=profileId1,proto3" json:"profile_id1,omitempty"`
-	ProfileId2    string                 `protobuf:"bytes,12,opt,name=profile_id2,json=profileId2,proto3" json:"profile_id2,omitempty"`
+	Friendship    *FriendshipResponse    `protobuf:"bytes,1,opt,name=friendship,proto3" json:"friendship,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *FriendDetails) Reset() {
-	*x = FriendDetails{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[2]
+func (x *CreateAnonymousResponse) Reset() {
+	*x = CreateAnonymousResponse{}
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *FriendDetails) String() string {
+func (x *CreateAnonymousResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*FriendDetails) ProtoMessage() {}
+func (*CreateAnonymousResponse) ProtoMessage() {}
 
-func (x *FriendDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[2]
+func (x *CreateAnonymousResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -259,89 +250,145 @@ func (x *FriendDetails) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use FriendDetails.ProtoReflect.Descriptor instead.
-func (*FriendDetails) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use CreateAnonymousResponse.ProtoReflect.Descriptor instead.
+func (*CreateAnonymousResponse) Descriptor() ([]byte, []int) {
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *FriendDetails) GetId() string {
+func (x *CreateAnonymousResponse) GetFriendship() *FriendshipResponse {
+	if x != nil {
+		return x.Friendship
+	}
+	return nil
+}
+
+// Detailed info about a friend
+type GetDetailsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Type          FriendshipType         `protobuf:"varint,4,opt,name=type,proto3,enum=friendship.v1.FriendshipType" json:"type,omitempty"`
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	Phone         string                 `protobuf:"bytes,6,opt,name=phone,proto3" json:"phone,omitempty"`
+	Avatar        string                 `protobuf:"bytes,7,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	ProfileId1    string                 `protobuf:"bytes,11,opt,name=profile_id1,json=profileId1,proto3" json:"profile_id1,omitempty"`
+	ProfileId2    string                 `protobuf:"bytes,12,opt,name=profile_id2,json=profileId2,proto3" json:"profile_id2,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDetailsResponse) Reset() {
+	*x = GetDetailsResponse{}
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDetailsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDetailsResponse) ProtoMessage() {}
+
+func (x *GetDetailsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDetailsResponse.ProtoReflect.Descriptor instead.
+func (*GetDetailsResponse) Descriptor() ([]byte, []int) {
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetDetailsResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetProfileId() string {
+func (x *GetDetailsResponse) GetProfileId() string {
 	if x != nil {
 		return x.ProfileId
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetName() string {
+func (x *GetDetailsResponse) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetType() FriendshipType {
+func (x *GetDetailsResponse) GetType() FriendshipType {
 	if x != nil {
 		return x.Type
 	}
-	return FriendshipType_ANON
+	return FriendshipType_FRIENDSHIP_TYPE_UNSPECIFIED
 }
 
-func (x *FriendDetails) GetEmail() string {
+func (x *GetDetailsResponse) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetPhone() string {
+func (x *GetDetailsResponse) GetPhone() string {
 	if x != nil {
 		return x.Phone
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetAvatar() string {
+func (x *GetDetailsResponse) GetAvatar() string {
 	if x != nil {
 		return x.Avatar
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetCreatedAt() *timestamppb.Timestamp {
+func (x *GetDetailsResponse) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return nil
 }
 
-func (x *FriendDetails) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *GetDetailsResponse) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
 	return nil
 }
 
-func (x *FriendDetails) GetDeletedAt() *timestamppb.Timestamp {
+func (x *GetDetailsResponse) GetDeletedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DeletedAt
 	}
 	return nil
 }
 
-func (x *FriendDetails) GetProfileId1() string {
+func (x *GetDetailsResponse) GetProfileId1() string {
 	if x != nil {
 		return x.ProfileId1
 	}
 	return ""
 }
 
-func (x *FriendDetails) GetProfileId2() string {
+func (x *GetDetailsResponse) GetProfileId2() string {
 	if x != nil {
 		return x.ProfileId2
 	}
@@ -357,7 +404,7 @@ type GetAllRequest struct {
 
 func (x *GetAllRequest) Reset() {
 	*x = GetAllRequest{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[3]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -369,7 +416,7 @@ func (x *GetAllRequest) String() string {
 func (*GetAllRequest) ProtoMessage() {}
 
 func (x *GetAllRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[3]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -382,7 +429,7 @@ func (x *GetAllRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllRequest.ProtoReflect.Descriptor instead.
 func (*GetAllRequest) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{3}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetAllRequest) GetProfileId() string {
@@ -401,7 +448,7 @@ type GetAllResponse struct {
 
 func (x *GetAllResponse) Reset() {
 	*x = GetAllResponse{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[4]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -413,7 +460,7 @@ func (x *GetAllResponse) String() string {
 func (*GetAllResponse) ProtoMessage() {}
 
 func (x *GetAllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[4]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -426,7 +473,7 @@ func (x *GetAllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllResponse.ProtoReflect.Descriptor instead.
 func (*GetAllResponse) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{4}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetAllResponse) GetFriendships() []*FriendshipResponse {
@@ -446,7 +493,7 @@ type GetDetailsRequest struct {
 
 func (x *GetDetailsRequest) Reset() {
 	*x = GetDetailsRequest{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[5]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -458,7 +505,7 @@ func (x *GetDetailsRequest) String() string {
 func (*GetDetailsRequest) ProtoMessage() {}
 
 func (x *GetDetailsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[5]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -471,7 +518,7 @@ func (x *GetDetailsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDetailsRequest.ProtoReflect.Descriptor instead.
 func (*GetDetailsRequest) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{5}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetDetailsRequest) GetProfileId() string {
@@ -498,7 +545,7 @@ type IsFriendsRequest struct {
 
 func (x *IsFriendsRequest) Reset() {
 	*x = IsFriendsRequest{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[6]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -510,7 +557,7 @@ func (x *IsFriendsRequest) String() string {
 func (*IsFriendsRequest) ProtoMessage() {}
 
 func (x *IsFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[6]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -523,7 +570,7 @@ func (x *IsFriendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IsFriendsRequest.ProtoReflect.Descriptor instead.
 func (*IsFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{6}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *IsFriendsRequest) GetProfileId_1() string {
@@ -550,7 +597,7 @@ type IsFriendsResponse struct {
 
 func (x *IsFriendsResponse) Reset() {
 	*x = IsFriendsResponse{}
-	mi := &file_friendship_friendship_message_proto_msgTypes[7]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -562,7 +609,7 @@ func (x *IsFriendsResponse) String() string {
 func (*IsFriendsResponse) ProtoMessage() {}
 
 func (x *IsFriendsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_friendship_friendship_message_proto_msgTypes[7]
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -575,7 +622,7 @@ func (x *IsFriendsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IsFriendsResponse.ProtoReflect.Descriptor instead.
 func (*IsFriendsResponse) Descriptor() ([]byte, []int) {
-	return file_friendship_friendship_message_proto_rawDescGZIP(), []int{7}
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *IsFriendsResponse) GetIsFriends() bool {
@@ -592,55 +639,56 @@ func (x *IsFriendsResponse) GetIsAnonymous() bool {
 	return false
 }
 
-var File_friendship_friendship_message_proto protoreflect.FileDescriptor
+var File_friendship_v1_friendship_message_proto protoreflect.FileDescriptor
 
-const file_friendship_friendship_message_proto_rawDesc = "" +
+const file_friendship_v1_friendship_message_proto_rawDesc = "" +
 	"\n" +
-	"#friendship/friendship_message.proto\x12\n" +
-	"friendship\x1a\x1fgoogle/protobuf/timestamp.proto\"R\n" +
-	"\x1dNewAnonymousFriendshipRequest\x12\x1d\n" +
+	"&friendship/v1/friendship_message.proto\x12\rfriendship.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"K\n" +
+	"\x16CreateAnonymousRequest\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x01 \x01(\tR\tprofileId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xdb\x02\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\xca\x02\n" +
 	"\x12FriendshipResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
-	"\x04type\x18\x02 \x01(\x0e2\x1a.friendship.FriendshipTypeR\x04type\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x121\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x1d.friendship.v1.FriendshipTypeR\x04type\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x03 \x01(\tR\tprofileId\x12!\n" +
 	"\fprofile_name\x18\x04 \x01(\tR\vprofileName\x129\n" +
 	"\n" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
+	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
 	"\n" +
-	"deleted_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01B\r\n" +
-	"\v_deleted_at\"\xcd\x03\n" +
-	"\rFriendDetails\x12\x0e\n" +
+	"deleted_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"\\\n" +
+	"\x17CreateAnonymousResponse\x12A\n" +
+	"\n" +
+	"friendship\x18\x01 \x01(\v2!.friendship.v1.FriendshipResponseR\n" +
+	"friendship\"\xc1\x03\n" +
+	"\x12GetDetailsResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x02 \x01(\tR\tprofileId\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12.\n" +
-	"\x04type\x18\x04 \x01(\x0e2\x1a.friendship.FriendshipTypeR\x04type\x12\x14\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x121\n" +
+	"\x04type\x18\x04 \x01(\x0e2\x1d.friendship.v1.FriendshipTypeR\x04type\x12\x14\n" +
 	"\x05email\x18\x05 \x01(\tR\x05email\x12\x14\n" +
 	"\x05phone\x18\x06 \x01(\tR\x05phone\x12\x16\n" +
 	"\x06avatar\x18\a \x01(\tR\x06avatar\x129\n" +
 	"\n" +
 	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
+	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
 	"\n" +
 	"deleted_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01\x12\x1f\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\x12\x1f\n" +
 	"\vprofile_id1\x18\v \x01(\tR\n" +
 	"profileId1\x12\x1f\n" +
 	"\vprofile_id2\x18\f \x01(\tR\n" +
-	"profileId2B\r\n" +
-	"\v_deleted_at\".\n" +
+	"profileId2\".\n" +
 	"\rGetAllRequest\x12\x1d\n" +
 	"\n" +
-	"profile_id\x18\x01 \x01(\tR\tprofileId\"R\n" +
-	"\x0eGetAllResponse\x12@\n" +
-	"\vfriendships\x18\x01 \x03(\v2\x1e.friendship.FriendshipResponseR\vfriendships\"W\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\"U\n" +
+	"\x0eGetAllResponse\x12C\n" +
+	"\vfriendships\x18\x01 \x03(\v2!.friendship.v1.FriendshipResponseR\vfriendships\"W\n" +
 	"\x11GetDetailsRequest\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x01 \x01(\tR\tprofileId\x12#\n" +
@@ -653,77 +701,78 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"\x11IsFriendsResponse\x12\x1d\n" +
 	"\n" +
 	"is_friends\x18\x01 \x01(\bR\tisFriends\x12!\n" +
-	"\fis_anonymous\x18\x02 \x01(\bR\visAnonymous*$\n" +
-	"\x0eFriendshipType\x12\b\n" +
-	"\x04ANON\x10\x00\x12\b\n" +
-	"\x04REAL\x10\x01B5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
+	"\fis_anonymous\x18\x02 \x01(\bR\visAnonymous*e\n" +
+	"\x0eFriendshipType\x12\x1f\n" +
+	"\x1bFRIENDSHIP_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14FRIENDSHIP_TYPE_ANON\x10\x01\x12\x18\n" +
+	"\x14FRIENDSHIP_TYPE_REAL\x10\x02BCZAgithub.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendshipb\x06proto3"
 
 var (
-	file_friendship_friendship_message_proto_rawDescOnce sync.Once
-	file_friendship_friendship_message_proto_rawDescData []byte
+	file_friendship_v1_friendship_message_proto_rawDescOnce sync.Once
+	file_friendship_v1_friendship_message_proto_rawDescData []byte
 )
 
-func file_friendship_friendship_message_proto_rawDescGZIP() []byte {
-	file_friendship_friendship_message_proto_rawDescOnce.Do(func() {
-		file_friendship_friendship_message_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_friendship_friendship_message_proto_rawDesc), len(file_friendship_friendship_message_proto_rawDesc)))
+func file_friendship_v1_friendship_message_proto_rawDescGZIP() []byte {
+	file_friendship_v1_friendship_message_proto_rawDescOnce.Do(func() {
+		file_friendship_v1_friendship_message_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_friendship_v1_friendship_message_proto_rawDesc), len(file_friendship_v1_friendship_message_proto_rawDesc)))
 	})
-	return file_friendship_friendship_message_proto_rawDescData
+	return file_friendship_v1_friendship_message_proto_rawDescData
 }
 
-var file_friendship_friendship_message_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_friendship_friendship_message_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_friendship_friendship_message_proto_goTypes = []any{
-	(FriendshipType)(0),                   // 0: friendship.FriendshipType
-	(*NewAnonymousFriendshipRequest)(nil), // 1: friendship.NewAnonymousFriendshipRequest
-	(*FriendshipResponse)(nil),            // 2: friendship.FriendshipResponse
-	(*FriendDetails)(nil),                 // 3: friendship.FriendDetails
-	(*GetAllRequest)(nil),                 // 4: friendship.GetAllRequest
-	(*GetAllResponse)(nil),                // 5: friendship.GetAllResponse
-	(*GetDetailsRequest)(nil),             // 6: friendship.GetDetailsRequest
-	(*IsFriendsRequest)(nil),              // 7: friendship.IsFriendsRequest
-	(*IsFriendsResponse)(nil),             // 8: friendship.IsFriendsResponse
-	(*timestamppb.Timestamp)(nil),         // 9: google.protobuf.Timestamp
+var file_friendship_v1_friendship_message_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_friendship_v1_friendship_message_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_friendship_v1_friendship_message_proto_goTypes = []any{
+	(FriendshipType)(0),             // 0: friendship.v1.FriendshipType
+	(*CreateAnonymousRequest)(nil),  // 1: friendship.v1.CreateAnonymousRequest
+	(*FriendshipResponse)(nil),      // 2: friendship.v1.FriendshipResponse
+	(*CreateAnonymousResponse)(nil), // 3: friendship.v1.CreateAnonymousResponse
+	(*GetDetailsResponse)(nil),      // 4: friendship.v1.GetDetailsResponse
+	(*GetAllRequest)(nil),           // 5: friendship.v1.GetAllRequest
+	(*GetAllResponse)(nil),          // 6: friendship.v1.GetAllResponse
+	(*GetDetailsRequest)(nil),       // 7: friendship.v1.GetDetailsRequest
+	(*IsFriendsRequest)(nil),        // 8: friendship.v1.IsFriendsRequest
+	(*IsFriendsResponse)(nil),       // 9: friendship.v1.IsFriendsResponse
+	(*timestamppb.Timestamp)(nil),   // 10: google.protobuf.Timestamp
 }
-var file_friendship_friendship_message_proto_depIdxs = []int32{
-	0, // 0: friendship.FriendshipResponse.type:type_name -> friendship.FriendshipType
-	9, // 1: friendship.FriendshipResponse.created_at:type_name -> google.protobuf.Timestamp
-	9, // 2: friendship.FriendshipResponse.updated_at:type_name -> google.protobuf.Timestamp
-	9, // 3: friendship.FriendshipResponse.deleted_at:type_name -> google.protobuf.Timestamp
-	0, // 4: friendship.FriendDetails.type:type_name -> friendship.FriendshipType
-	9, // 5: friendship.FriendDetails.created_at:type_name -> google.protobuf.Timestamp
-	9, // 6: friendship.FriendDetails.updated_at:type_name -> google.protobuf.Timestamp
-	9, // 7: friendship.FriendDetails.deleted_at:type_name -> google.protobuf.Timestamp
-	2, // 8: friendship.GetAllResponse.friendships:type_name -> friendship.FriendshipResponse
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+var file_friendship_v1_friendship_message_proto_depIdxs = []int32{
+	0,  // 0: friendship.v1.FriendshipResponse.type:type_name -> friendship.v1.FriendshipType
+	10, // 1: friendship.v1.FriendshipResponse.created_at:type_name -> google.protobuf.Timestamp
+	10, // 2: friendship.v1.FriendshipResponse.updated_at:type_name -> google.protobuf.Timestamp
+	10, // 3: friendship.v1.FriendshipResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	2,  // 4: friendship.v1.CreateAnonymousResponse.friendship:type_name -> friendship.v1.FriendshipResponse
+	0,  // 5: friendship.v1.GetDetailsResponse.type:type_name -> friendship.v1.FriendshipType
+	10, // 6: friendship.v1.GetDetailsResponse.created_at:type_name -> google.protobuf.Timestamp
+	10, // 7: friendship.v1.GetDetailsResponse.updated_at:type_name -> google.protobuf.Timestamp
+	10, // 8: friendship.v1.GetDetailsResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	2,  // 9: friendship.v1.GetAllResponse.friendships:type_name -> friendship.v1.FriendshipResponse
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
-func init() { file_friendship_friendship_message_proto_init() }
-func file_friendship_friendship_message_proto_init() {
-	if File_friendship_friendship_message_proto != nil {
+func init() { file_friendship_v1_friendship_message_proto_init() }
+func file_friendship_v1_friendship_message_proto_init() {
+	if File_friendship_v1_friendship_message_proto != nil {
 		return
 	}
-	file_friendship_friendship_message_proto_msgTypes[1].OneofWrappers = []any{}
-	file_friendship_friendship_message_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_friendship_friendship_message_proto_rawDesc), len(file_friendship_friendship_message_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_friendship_v1_friendship_message_proto_rawDesc), len(file_friendship_v1_friendship_message_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_friendship_friendship_message_proto_goTypes,
-		DependencyIndexes: file_friendship_friendship_message_proto_depIdxs,
-		EnumInfos:         file_friendship_friendship_message_proto_enumTypes,
-		MessageInfos:      file_friendship_friendship_message_proto_msgTypes,
+		GoTypes:           file_friendship_v1_friendship_message_proto_goTypes,
+		DependencyIndexes: file_friendship_v1_friendship_message_proto_depIdxs,
+		EnumInfos:         file_friendship_v1_friendship_message_proto_enumTypes,
+		MessageInfos:      file_friendship_v1_friendship_message_proto_msgTypes,
 	}.Build()
-	File_friendship_friendship_message_proto = out.File
-	file_friendship_friendship_message_proto_goTypes = nil
-	file_friendship_friendship_message_proto_depIdxs = nil
+	File_friendship_v1_friendship_message_proto = out.File
+	file_friendship_v1_friendship_message_proto_goTypes = nil
+	file_friendship_v1_friendship_message_proto_depIdxs = nil
 }

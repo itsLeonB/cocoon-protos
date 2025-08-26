@@ -1,19 +1,20 @@
 syntax = "proto3";
 
-package friendship;
+package friendship.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship";
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendship";
 
 // Enum for friendship type
 enum FriendshipType {
-  ANON = 0;
-  REAL = 1;
+  FRIENDSHIP_TYPE_UNSPECIFIED = 0;
+  FRIENDSHIP_TYPE_ANON = 1;
+  FRIENDSHIP_TYPE_REAL = 2;
 }
 
 // Request to create new anonymous friendship
-message NewAnonymousFriendshipRequest {
+message CreateAnonymousRequest {
   string profile_id = 1;
   string name = 2; // required in API layer, not enforced by proto
 }
@@ -26,11 +27,15 @@ message FriendshipResponse {
   string profile_name = 4;
   google.protobuf.Timestamp created_at = 5;
   google.protobuf.Timestamp updated_at = 6;
-  optional google.protobuf.Timestamp deleted_at = 7;
+  google.protobuf.Timestamp deleted_at = 7;
+}
+
+message CreateAnonymousResponse {
+  FriendshipResponse friendship = 1;
 }
 
 // Detailed info about a friend
-message FriendDetails {
+message GetDetailsResponse {
   string id = 1;
   string profile_id = 2;
   string name = 3;
@@ -40,7 +45,7 @@ message FriendDetails {
   string avatar = 7;
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp updated_at = 9;
-  optional google.protobuf.Timestamp deleted_at = 10;
+  google.protobuf.Timestamp deleted_at = 10;
   string profile_id1 = 11;
   string profile_id2 = 12;
 }

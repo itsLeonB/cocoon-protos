@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package profile;
-
-option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile";
+package profile.v1;
 
 import "google/protobuf/timestamp.proto";
 
-message ProfileRequest {
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profile";
+
+message GetRequest {
   string profile_id = 1;
 }
 
@@ -16,13 +16,21 @@ message ProfileResponse {
   string name = 3;
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
-  optional google.protobuf.Timestamp deleted_at = 6;
+  google.protobuf.Timestamp deleted_at = 6;
   bool is_anonymous = 7;
 }
 
-message NewProfileRequest {
+message GetResponse {
+  ProfileResponse profile = 1;
+}
+
+message CreateRequest {
   optional string user_id = 1;
   string name = 2;
+}
+
+message CreateResponse {
+  ProfileResponse profile = 1;
 }
 
 message GetNamesRequest {

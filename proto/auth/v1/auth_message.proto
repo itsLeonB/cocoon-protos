@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package auth.v1;
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;auth";
+
+message VerifyTokenRequest {
+  string token = 1;
+}
+
+message VerifyTokenResponse {
+  string profile_id = 1;
+}
