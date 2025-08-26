@@ -543,6 +543,7 @@ func (x *IsFriendsRequest) GetProfileId_2() string {
 type IsFriendsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IsFriends     bool                   `protobuf:"varint,1,opt,name=is_friends,json=isFriends,proto3" json:"is_friends,omitempty"`
+	IsAnonymous   bool                   `protobuf:"varint,2,opt,name=is_anonymous,json=isAnonymous,proto3" json:"is_anonymous,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -580,6 +581,13 @@ func (*IsFriendsResponse) Descriptor() ([]byte, []int) {
 func (x *IsFriendsResponse) GetIsFriends() bool {
 	if x != nil {
 		return x.IsFriends
+	}
+	return false
+}
+
+func (x *IsFriendsResponse) GetIsAnonymous() bool {
+	if x != nil {
+		return x.IsAnonymous
 	}
 	return false
 }
@@ -641,10 +649,11 @@ const file_friendship_friendship_message_proto_rawDesc = "" +
 	"\fprofile_id_1\x18\x01 \x01(\tR\n" +
 	"profileId1\x12 \n" +
 	"\fprofile_id_2\x18\x02 \x01(\tR\n" +
-	"profileId2\"2\n" +
+	"profileId2\"U\n" +
 	"\x11IsFriendsResponse\x12\x1d\n" +
 	"\n" +
-	"is_friends\x18\x01 \x01(\bR\tisFriends*$\n" +
+	"is_friends\x18\x01 \x01(\bR\tisFriends\x12!\n" +
+	"\fis_anonymous\x18\x02 \x01(\bR\visAnonymous*$\n" +
 	"\x0eFriendshipType\x12\b\n" +
 	"\x04ANON\x10\x00\x12\b\n" +
 	"\x04REAL\x10\x01B5Z3github.com/itsLeonB/cocoon-protos/gen/go/friendshipb\x06proto3"
