@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package profile.v1;
 
-import "google/protobuf/timestamp.proto";
+import "domain/v1/profile.proto";
 
 option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profile";
 
@@ -10,18 +10,8 @@ message GetRequest {
   string profile_id = 1;
 }
 
-message ProfileResponse {
-  string id = 1;
-  string user_id = 2;
-  string name = 3;
-  google.protobuf.Timestamp created_at = 4;
-  google.protobuf.Timestamp updated_at = 5;
-  google.protobuf.Timestamp deleted_at = 6;
-  bool is_anonymous = 7;
-}
-
 message GetResponse {
-  ProfileResponse profile = 1;
+  domain.v1.Profile profile = 1;
 }
 
 message CreateRequest {
@@ -30,15 +20,7 @@ message CreateRequest {
 }
 
 message CreateResponse {
-  ProfileResponse profile = 1;
-}
-
-message GetNamesRequest {
-  repeated string profile_ids = 1;
-}
-
-message GetNamesResponse {
-  map<string, string> names_by_profile_id = 1; // profile_id -> name
+  domain.v1.Profile profile = 1;
 }
 
 message GetByIDsRequest {
@@ -46,5 +28,5 @@ message GetByIDsRequest {
 }
 
 message GetByIDsResponse {
-  repeated ProfileResponse profiles = 1;
+  repeated domain.v1.Profile profiles = 1;
 }

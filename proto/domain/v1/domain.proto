@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package domain.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/domain/v1;domain";
+
+message AuditMetadata {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp updated_at = 3;
+  google.protobuf.Timestamp deleted_at = 4;
+}
