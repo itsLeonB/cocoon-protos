@@ -21,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	ProfileService_Get_FullMethodName      = "/profile.v1.ProfileService/Get"
 	ProfileService_Create_FullMethodName   = "/profile.v1.ProfileService/Create"
-	ProfileService_GetNames_FullMethodName = "/profile.v1.ProfileService/GetNames"
 	ProfileService_GetByIDs_FullMethodName = "/profile.v1.ProfileService/GetByIDs"
 )
 
@@ -31,7 +30,6 @@ const (
 type ProfileServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
-	GetNames(ctx context.Context, in *GetNamesRequest, opts ...grpc.CallOption) (*GetNamesResponse, error)
 	GetByIDs(ctx context.Context, in *GetByIDsRequest, opts ...grpc.CallOption) (*GetByIDsResponse, error)
 }
 
@@ -63,16 +61,6 @@ func (c *profileServiceClient) Create(ctx context.Context, in *CreateRequest, op
 	return out, nil
 }
 
-func (c *profileServiceClient) GetNames(ctx context.Context, in *GetNamesRequest, opts ...grpc.CallOption) (*GetNamesResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetNamesResponse)
-	err := c.cc.Invoke(ctx, ProfileService_GetNames_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *profileServiceClient) GetByIDs(ctx context.Context, in *GetByIDsRequest, opts ...grpc.CallOption) (*GetByIDsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetByIDsResponse)
@@ -89,7 +77,6 @@ func (c *profileServiceClient) GetByIDs(ctx context.Context, in *GetByIDsRequest
 type ProfileServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
-	GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error)
 	GetByIDs(context.Context, *GetByIDsRequest) (*GetByIDsResponse, error)
 	mustEmbedUnimplementedProfileServiceServer()
 }
@@ -106,9 +93,6 @@ func (UnimplementedProfileServiceServer) Get(context.Context, *GetRequest) (*Get
 }
 func (UnimplementedProfileServiceServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedProfileServiceServer) GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNames not implemented")
 }
 func (UnimplementedProfileServiceServer) GetByIDs(context.Context, *GetByIDsRequest) (*GetByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByIDs not implemented")
@@ -170,24 +154,6 @@ func _ProfileService_Create_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProfileService_GetNames_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetNamesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProfileServiceServer).GetNames(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProfileService_GetNames_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProfileServiceServer).GetNames(ctx, req.(*GetNamesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ProfileService_GetByIDs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetByIDsRequest)
 	if err := dec(in); err != nil {
@@ -220,10 +186,6 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _ProfileService_Create_Handler,
-		},
-		{
-			MethodName: "GetNames",
-			Handler:    _ProfileService_GetNames_Handler,
 		},
 		{
 			MethodName: "GetByIDs",

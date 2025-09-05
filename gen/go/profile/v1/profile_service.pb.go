@@ -25,34 +25,29 @@ var File_profile_v1_profile_service_proto protoreflect.FileDescriptor
 const file_profile_v1_profile_service_proto_rawDesc = "" +
 	"\n" +
 	" profile/v1/profile_service.proto\x12\n" +
-	"profile.v1\x1a profile/v1/profile_message.proto2\x97\x02\n" +
+	"profile.v1\x1a profile/v1/profile_message.proto2\xd0\x01\n" +
 	"\x0eProfileService\x126\n" +
 	"\x03Get\x12\x16.profile.v1.GetRequest\x1a\x17.profile.v1.GetResponse\x12?\n" +
 	"\x06Create\x12\x19.profile.v1.CreateRequest\x1a\x1a.profile.v1.CreateResponse\x12E\n" +
-	"\bGetNames\x12\x1b.profile.v1.GetNamesRequest\x1a\x1c.profile.v1.GetNamesResponse\x12E\n" +
 	"\bGetByIDs\x12\x1b.profile.v1.GetByIDsRequest\x1a\x1c.profile.v1.GetByIDsResponseB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
 
 var file_profile_v1_profile_service_proto_goTypes = []any{
 	(*GetRequest)(nil),       // 0: profile.v1.GetRequest
 	(*CreateRequest)(nil),    // 1: profile.v1.CreateRequest
-	(*GetNamesRequest)(nil),  // 2: profile.v1.GetNamesRequest
-	(*GetByIDsRequest)(nil),  // 3: profile.v1.GetByIDsRequest
-	(*GetResponse)(nil),      // 4: profile.v1.GetResponse
-	(*CreateResponse)(nil),   // 5: profile.v1.CreateResponse
-	(*GetNamesResponse)(nil), // 6: profile.v1.GetNamesResponse
-	(*GetByIDsResponse)(nil), // 7: profile.v1.GetByIDsResponse
+	(*GetByIDsRequest)(nil),  // 2: profile.v1.GetByIDsRequest
+	(*GetResponse)(nil),      // 3: profile.v1.GetResponse
+	(*CreateResponse)(nil),   // 4: profile.v1.CreateResponse
+	(*GetByIDsResponse)(nil), // 5: profile.v1.GetByIDsResponse
 }
 var file_profile_v1_profile_service_proto_depIdxs = []int32{
 	0, // 0: profile.v1.ProfileService.Get:input_type -> profile.v1.GetRequest
 	1, // 1: profile.v1.ProfileService.Create:input_type -> profile.v1.CreateRequest
-	2, // 2: profile.v1.ProfileService.GetNames:input_type -> profile.v1.GetNamesRequest
-	3, // 3: profile.v1.ProfileService.GetByIDs:input_type -> profile.v1.GetByIDsRequest
-	4, // 4: profile.v1.ProfileService.Get:output_type -> profile.v1.GetResponse
-	5, // 5: profile.v1.ProfileService.Create:output_type -> profile.v1.CreateResponse
-	6, // 6: profile.v1.ProfileService.GetNames:output_type -> profile.v1.GetNamesResponse
-	7, // 7: profile.v1.ProfileService.GetByIDs:output_type -> profile.v1.GetByIDsResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	2, // 2: profile.v1.ProfileService.GetByIDs:input_type -> profile.v1.GetByIDsRequest
+	3, // 3: profile.v1.ProfileService.Get:output_type -> profile.v1.GetResponse
+	4, // 4: profile.v1.ProfileService.Create:output_type -> profile.v1.CreateResponse
+	5, // 5: profile.v1.ProfileService.GetByIDs:output_type -> profile.v1.GetByIDsResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
