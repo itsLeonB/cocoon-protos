@@ -1,0 +1,16 @@
+version: v1
+
+deps:
+- buf.build/rleonb/audit
+
+lint:
+  use:
+  - STANDARD
+  # ignore_only:
+  #   RPC_RESPONSE_STANDARD_NAME:
+  #   RPC_REQUEST_STANDARD_NAME:
+  #   RPC_REQUEST_RESPONSE_UNIQUE:
+
+breaking:
+  use:
+  - FILE
