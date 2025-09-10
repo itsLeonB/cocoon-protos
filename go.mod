@@ -1,8 +1,9 @@
 module github.com/itsLeonB/cocoon-protos
 
-go 1.24.4
+go 1.25.0
 
 require (
+	github.com/itsLeonB/audit v0.1.0
 	google.golang.org/grpc v1.75.0
 	google.golang.org/protobuf v1.36.8
 )

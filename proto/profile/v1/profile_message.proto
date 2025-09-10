@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package profile.v1;
 
-import "domain/v1/profile.proto";
+import "profile/v1/profile_domain.proto";
 
 option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profile";
 
@@ -11,7 +11,7 @@ message GetRequest {
 }
 
 message GetResponse {
-  domain.v1.Profile profile = 1;
+  Profile profile = 1;
 }
 
 message CreateRequest {
@@ -20,7 +20,7 @@ message CreateRequest {
 }
 
 message CreateResponse {
-  domain.v1.Profile profile = 1;
+  Profile profile = 1;
 }
 
 message GetByIDsRequest {
@@ -28,5 +28,5 @@ message GetByIDsRequest {
 }
 
 message GetByIDsResponse {
-  repeated domain.v1.Profile profiles = 1;
+  repeated Profile profiles = 1;
 }
