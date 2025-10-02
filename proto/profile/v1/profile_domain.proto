@@ -10,5 +10,9 @@ message Profile {
   string user_id = 1;
   string name = 2;
   string avatar = 3;
-  audit.v1.Metadata audit_metadata = 4;
+}
+
+message ProfileResponse {
+  Profile profile = 1;
+  audit.v1.Metadata audit_metadata = 2;
 }

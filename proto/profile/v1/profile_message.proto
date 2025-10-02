@@ -11,7 +11,7 @@ message GetRequest {
 }
 
 message GetResponse {
-  Profile profile = 1;
+  ProfileResponse profile = 1;
 }
 
 message CreateRequest {
@@ -20,7 +20,7 @@ message CreateRequest {
 }
 
 message CreateResponse {
-  Profile profile = 1;
+  ProfileResponse profile = 1;
 }
 
 message GetByIDsRequest {
@@ -28,5 +28,14 @@ message GetByIDsRequest {
 }
 
 message GetByIDsResponse {
-  repeated Profile profiles = 1;
+  repeated ProfileResponse profiles = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  Profile profile = 2;
+}
+
+message UpdateResponse {
+  ProfileResponse profile = 1;
 }
