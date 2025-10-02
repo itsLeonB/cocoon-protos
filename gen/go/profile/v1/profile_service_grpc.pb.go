@@ -22,6 +22,7 @@ const (
 	ProfileService_Get_FullMethodName      = "/profile.v1.ProfileService/Get"
 	ProfileService_Create_FullMethodName   = "/profile.v1.ProfileService/Create"
 	ProfileService_GetByIDs_FullMethodName = "/profile.v1.ProfileService/GetByIDs"
+	ProfileService_Update_FullMethodName   = "/profile.v1.ProfileService/Update"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -31,6 +32,7 @@ type ProfileServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	GetByIDs(ctx context.Context, in *GetByIDsRequest, opts ...grpc.CallOption) (*GetByIDsResponse, error)
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 }
 
 type profileServiceClient struct {
@@ -71,6 +73,16 @@ func (c *profileServiceClient) GetByIDs(ctx context.Context, in *GetByIDsRequest
 	return out, nil
 }
 
+func (c *profileServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, ProfileService_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProfileServiceServer is the server API for ProfileService service.
 // All implementations must embed UnimplementedProfileServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type ProfileServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	GetByIDs(context.Context, *GetByIDsRequest) (*GetByIDsResponse, error)
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	mustEmbedUnimplementedProfileServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedProfileServiceServer) Create(context.Context, *CreateRequest)
 }
 func (UnimplementedProfileServiceServer) GetByIDs(context.Context, *GetByIDsRequest) (*GetByIDsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByIDs not implemented")
+}
+func (UnimplementedProfileServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedProfileServiceServer) mustEmbedUnimplementedProfileServiceServer() {}
 func (UnimplementedProfileServiceServer) testEmbeddedByValue()                        {}
@@ -172,6 +188,24 @@ func _ProfileService_GetByIDs_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProfileService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).Update(ctx, req.(*UpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProfileService_ServiceDesc is the grpc.ServiceDesc for ProfileService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetByIDs",
 			Handler:    _ProfileService_GetByIDs_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _ProfileService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

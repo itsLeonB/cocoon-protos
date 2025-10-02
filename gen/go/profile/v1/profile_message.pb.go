@@ -67,7 +67,7 @@ func (x *GetRequest) GetProfileId() string {
 
 type GetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Profile       *Profile               `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	Profile       *ProfileResponse       `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -102,7 +102,7 @@ func (*GetResponse) Descriptor() ([]byte, []int) {
 	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetResponse) GetProfile() *Profile {
+func (x *GetResponse) GetProfile() *ProfileResponse {
 	if x != nil {
 		return x.Profile
 	}
@@ -163,7 +163,7 @@ func (x *CreateRequest) GetName() string {
 
 type CreateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Profile       *Profile               `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	Profile       *ProfileResponse       `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -198,7 +198,7 @@ func (*CreateResponse) Descriptor() ([]byte, []int) {
 	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreateResponse) GetProfile() *Profile {
+func (x *CreateResponse) GetProfile() *ProfileResponse {
 	if x != nil {
 		return x.Profile
 	}
@@ -251,7 +251,7 @@ func (x *GetByIDsRequest) GetProfileIds() []string {
 
 type GetByIDsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Profiles      []*Profile             `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles,omitempty"`
+	Profiles      []*ProfileResponse     `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -286,9 +286,105 @@ func (*GetByIDsResponse) Descriptor() ([]byte, []int) {
 	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetByIDsResponse) GetProfiles() []*Profile {
+func (x *GetByIDsResponse) GetProfiles() []*ProfileResponse {
 	if x != nil {
 		return x.Profiles
+	}
+	return nil
+}
+
+type UpdateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Profile       *Profile               `protobuf:"bytes,2,opt,name=profile,proto3" json:"profile,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateRequest) Reset() {
+	*x = UpdateRequest{}
+	mi := &file_profile_v1_profile_message_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateRequest) ProtoMessage() {}
+
+func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_v1_profile_message_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
+func (*UpdateRequest) Descriptor() ([]byte, []int) {
+	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetProfile() *Profile {
+	if x != nil {
+		return x.Profile
+	}
+	return nil
+}
+
+type UpdateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Profile       *ProfileResponse       `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateResponse) Reset() {
+	*x = UpdateResponse{}
+	mi := &file_profile_v1_profile_message_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateResponse) ProtoMessage() {}
+
+func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_v1_profile_message_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
+func (*UpdateResponse) Descriptor() ([]byte, []int) {
+	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateResponse) GetProfile() *ProfileResponse {
+	if x != nil {
+		return x.Profile
 	}
 	return nil
 }
@@ -302,21 +398,26 @@ const file_profile_v1_profile_message_proto_rawDesc = "" +
 	"\n" +
 	"GetRequest\x12\x1d\n" +
 	"\n" +
-	"profile_id\x18\x01 \x01(\tR\tprofileId\"<\n" +
-	"\vGetResponse\x12-\n" +
-	"\aprofile\x18\x01 \x01(\v2\x13.profile.v1.ProfileR\aprofile\"M\n" +
+	"profile_id\x18\x01 \x01(\tR\tprofileId\"D\n" +
+	"\vGetResponse\x125\n" +
+	"\aprofile\x18\x01 \x01(\v2\x1b.profile.v1.ProfileResponseR\aprofile\"M\n" +
 	"\rCreateRequest\x12\x1c\n" +
 	"\auser_id\x18\x01 \x01(\tH\x00R\x06userId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04nameB\n" +
 	"\n" +
-	"\b_user_id\"?\n" +
-	"\x0eCreateResponse\x12-\n" +
-	"\aprofile\x18\x01 \x01(\v2\x13.profile.v1.ProfileR\aprofile\"2\n" +
+	"\b_user_id\"G\n" +
+	"\x0eCreateResponse\x125\n" +
+	"\aprofile\x18\x01 \x01(\v2\x1b.profile.v1.ProfileResponseR\aprofile\"2\n" +
 	"\x0fGetByIDsRequest\x12\x1f\n" +
 	"\vprofile_ids\x18\x01 \x03(\tR\n" +
-	"profileIds\"C\n" +
-	"\x10GetByIDsResponse\x12/\n" +
-	"\bprofiles\x18\x01 \x03(\v2\x13.profile.v1.ProfileR\bprofilesB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
+	"profileIds\"K\n" +
+	"\x10GetByIDsResponse\x127\n" +
+	"\bprofiles\x18\x01 \x03(\v2\x1b.profile.v1.ProfileResponseR\bprofiles\"N\n" +
+	"\rUpdateRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12-\n" +
+	"\aprofile\x18\x02 \x01(\v2\x13.profile.v1.ProfileR\aprofile\"G\n" +
+	"\x0eUpdateResponse\x125\n" +
+	"\aprofile\x18\x01 \x01(\v2\x1b.profile.v1.ProfileResponseR\aprofileB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
 
 var (
 	file_profile_v1_profile_message_proto_rawDescOnce sync.Once
@@ -330,7 +431,7 @@ func file_profile_v1_profile_message_proto_rawDescGZIP() []byte {
 	return file_profile_v1_profile_message_proto_rawDescData
 }
 
-var file_profile_v1_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_profile_v1_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_profile_v1_profile_message_proto_goTypes = []any{
 	(*GetRequest)(nil),       // 0: profile.v1.GetRequest
 	(*GetResponse)(nil),      // 1: profile.v1.GetResponse
@@ -338,17 +439,22 @@ var file_profile_v1_profile_message_proto_goTypes = []any{
 	(*CreateResponse)(nil),   // 3: profile.v1.CreateResponse
 	(*GetByIDsRequest)(nil),  // 4: profile.v1.GetByIDsRequest
 	(*GetByIDsResponse)(nil), // 5: profile.v1.GetByIDsResponse
-	(*Profile)(nil),          // 6: profile.v1.Profile
+	(*UpdateRequest)(nil),    // 6: profile.v1.UpdateRequest
+	(*UpdateResponse)(nil),   // 7: profile.v1.UpdateResponse
+	(*ProfileResponse)(nil),  // 8: profile.v1.ProfileResponse
+	(*Profile)(nil),          // 9: profile.v1.Profile
 }
 var file_profile_v1_profile_message_proto_depIdxs = []int32{
-	6, // 0: profile.v1.GetResponse.profile:type_name -> profile.v1.Profile
-	6, // 1: profile.v1.CreateResponse.profile:type_name -> profile.v1.Profile
-	6, // 2: profile.v1.GetByIDsResponse.profiles:type_name -> profile.v1.Profile
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	8, // 0: profile.v1.GetResponse.profile:type_name -> profile.v1.ProfileResponse
+	8, // 1: profile.v1.CreateResponse.profile:type_name -> profile.v1.ProfileResponse
+	8, // 2: profile.v1.GetByIDsResponse.profiles:type_name -> profile.v1.ProfileResponse
+	9, // 3: profile.v1.UpdateRequest.profile:type_name -> profile.v1.Profile
+	8, // 4: profile.v1.UpdateResponse.profile:type_name -> profile.v1.ProfileResponse
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_profile_v1_profile_message_proto_init() }
@@ -364,7 +470,7 @@ func file_profile_v1_profile_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_profile_v1_profile_message_proto_rawDesc), len(file_profile_v1_profile_message_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
