@@ -9,6 +9,10 @@ option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profile
 message Profile {
   string user_id = 1;
   string name = 2;
-  bool is_anonymous = 3;
-  audit.v1.Metadata audit_metadata = 4;
+  string avatar = 3;
+}
+
+message ProfileResponse {
+  Profile profile = 1;
+  audit.v1.Metadata audit_metadata = 2;
 }
