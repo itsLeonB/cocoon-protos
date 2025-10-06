@@ -5,11 +5,24 @@ package auth.v1;
 option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;auth";
 
 message LoginRequest {
-  string email = 1;
-  string password = 2;
+  oneof login_method {
+    InternalLoginRequest internal_request = 1;
+    OAuth2LoginRequest oauth2_request = 2;
+  }
 }
 
 message LoginResponse {
   string type = 1;
   string token = 2;
+}
+
+message InternalLoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message OAuth2LoginRequest {
+  string provider = 1;
+  string code = 2;
+  string state = 3;
 }

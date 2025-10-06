@@ -22,9 +22,12 @@ const (
 )
 
 type LoginRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to LoginMethod:
+	//
+	//	*LoginRequest_InternalRequest
+	//	*LoginRequest_Oauth2Request
+	LoginMethod   isLoginRequest_LoginMethod `protobuf_oneof:"login_method"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,19 +62,46 @@ func (*LoginRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_login_message_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *LoginRequest) GetEmail() string {
+func (x *LoginRequest) GetLoginMethod() isLoginRequest_LoginMethod {
 	if x != nil {
-		return x.Email
+		return x.LoginMethod
 	}
-	return ""
+	return nil
 }
 
-func (x *LoginRequest) GetPassword() string {
+func (x *LoginRequest) GetInternalRequest() *InternalLoginRequest {
 	if x != nil {
-		return x.Password
+		if x, ok := x.LoginMethod.(*LoginRequest_InternalRequest); ok {
+			return x.InternalRequest
+		}
 	}
-	return ""
+	return nil
 }
+
+func (x *LoginRequest) GetOauth2Request() *OAuth2LoginRequest {
+	if x != nil {
+		if x, ok := x.LoginMethod.(*LoginRequest_Oauth2Request); ok {
+			return x.Oauth2Request
+		}
+	}
+	return nil
+}
+
+type isLoginRequest_LoginMethod interface {
+	isLoginRequest_LoginMethod()
+}
+
+type LoginRequest_InternalRequest struct {
+	InternalRequest *InternalLoginRequest `protobuf:"bytes,1,opt,name=internal_request,json=internalRequest,proto3,oneof"`
+}
+
+type LoginRequest_Oauth2Request struct {
+	Oauth2Request *OAuth2LoginRequest `protobuf:"bytes,2,opt,name=oauth2_request,json=oauth2Request,proto3,oneof"`
+}
+
+func (*LoginRequest_InternalRequest) isLoginRequest_LoginMethod() {}
+
+func (*LoginRequest_Oauth2Request) isLoginRequest_LoginMethod() {}
 
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -125,17 +155,137 @@ func (x *LoginResponse) GetToken() string {
 	return ""
 }
 
+type InternalLoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InternalLoginRequest) Reset() {
+	*x = InternalLoginRequest{}
+	mi := &file_auth_v1_login_message_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InternalLoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InternalLoginRequest) ProtoMessage() {}
+
+func (x *InternalLoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_login_message_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InternalLoginRequest.ProtoReflect.Descriptor instead.
+func (*InternalLoginRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_login_message_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *InternalLoginRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *InternalLoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type OAuth2LoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Provider      string                 `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
+	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	State         string                 `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OAuth2LoginRequest) Reset() {
+	*x = OAuth2LoginRequest{}
+	mi := &file_auth_v1_login_message_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OAuth2LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OAuth2LoginRequest) ProtoMessage() {}
+
+func (x *OAuth2LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_login_message_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OAuth2LoginRequest.ProtoReflect.Descriptor instead.
+func (*OAuth2LoginRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_login_message_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *OAuth2LoginRequest) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+func (x *OAuth2LoginRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *OAuth2LoginRequest) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
 var File_auth_v1_login_message_proto protoreflect.FileDescriptor
 
 const file_auth_v1_login_message_proto_rawDesc = "" +
 	"\n" +
-	"\x1bauth/v1/login_message.proto\x12\aauth.v1\"@\n" +
-	"\fLoginRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"9\n" +
+	"\x1bauth/v1/login_message.proto\x12\aauth.v1\"\xb0\x01\n" +
+	"\fLoginRequest\x12J\n" +
+	"\x10internal_request\x18\x01 \x01(\v2\x1d.auth.v1.InternalLoginRequestH\x00R\x0finternalRequest\x12D\n" +
+	"\x0eoauth2_request\x18\x02 \x01(\v2\x1b.auth.v1.OAuth2LoginRequestH\x00R\roauth2RequestB\x0e\n" +
+	"\flogin_method\"9\n" +
 	"\rLoginResponse\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05tokenB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
+	"\x05token\x18\x02 \x01(\tR\x05token\"H\n" +
+	"\x14InternalLoginRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"Z\n" +
+	"\x12OAuth2LoginRequest\x12\x1a\n" +
+	"\bprovider\x18\x01 \x01(\tR\bprovider\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12\x14\n" +
+	"\x05state\x18\x03 \x01(\tR\x05stateB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_login_message_proto_rawDescOnce sync.Once
@@ -149,17 +299,21 @@ func file_auth_v1_login_message_proto_rawDescGZIP() []byte {
 	return file_auth_v1_login_message_proto_rawDescData
 }
 
-var file_auth_v1_login_message_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_auth_v1_login_message_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_auth_v1_login_message_proto_goTypes = []any{
-	(*LoginRequest)(nil),  // 0: auth.v1.LoginRequest
-	(*LoginResponse)(nil), // 1: auth.v1.LoginResponse
+	(*LoginRequest)(nil),         // 0: auth.v1.LoginRequest
+	(*LoginResponse)(nil),        // 1: auth.v1.LoginResponse
+	(*InternalLoginRequest)(nil), // 2: auth.v1.InternalLoginRequest
+	(*OAuth2LoginRequest)(nil),   // 3: auth.v1.OAuth2LoginRequest
 }
 var file_auth_v1_login_message_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: auth.v1.LoginRequest.internal_request:type_name -> auth.v1.InternalLoginRequest
+	3, // 1: auth.v1.LoginRequest.oauth2_request:type_name -> auth.v1.OAuth2LoginRequest
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_login_message_proto_init() }
@@ -167,13 +321,17 @@ func file_auth_v1_login_message_proto_init() {
 	if File_auth_v1_login_message_proto != nil {
 		return
 	}
+	file_auth_v1_login_message_proto_msgTypes[0].OneofWrappers = []any{
+		(*LoginRequest_InternalRequest)(nil),
+		(*LoginRequest_Oauth2Request)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_login_message_proto_rawDesc), len(file_auth_v1_login_message_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
