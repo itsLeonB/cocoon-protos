@@ -11,3 +11,12 @@ message VerifyTokenRequest {
 message VerifyTokenResponse {
   string profile_id = 1;
 }
+
+message GetOAuth2UrlResponse {
+  string url = 1;
+}
+
+message GetOAuth2UrlRequest {
+  string provider = 1;
+  string state = 2;
+}
