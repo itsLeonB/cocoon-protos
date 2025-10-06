@@ -22,11 +22,14 @@ const (
 )
 
 type LoginRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	InternalRequest *InternalLoginRequest  `protobuf:"bytes,1,opt,name=internal_request,json=internalRequest,proto3" json:"internal_request,omitempty"`
-	Oauth2Request   *OAuth2LoginRequest    `protobuf:"bytes,2,opt,name=oauth2_request,json=oauth2Request,proto3" json:"oauth2_request,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to LoginMethod:
+	//
+	//	*LoginRequest_InternalRequest
+	//	*LoginRequest_Oauth2Request
+	LoginMethod   isLoginRequest_LoginMethod `protobuf_oneof:"login_method"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LoginRequest) Reset() {
@@ -59,19 +62,46 @@ func (*LoginRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_login_message_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *LoginRequest) GetLoginMethod() isLoginRequest_LoginMethod {
+	if x != nil {
+		return x.LoginMethod
+	}
+	return nil
+}
+
 func (x *LoginRequest) GetInternalRequest() *InternalLoginRequest {
 	if x != nil {
-		return x.InternalRequest
+		if x, ok := x.LoginMethod.(*LoginRequest_InternalRequest); ok {
+			return x.InternalRequest
+		}
 	}
 	return nil
 }
 
 func (x *LoginRequest) GetOauth2Request() *OAuth2LoginRequest {
 	if x != nil {
-		return x.Oauth2Request
+		if x, ok := x.LoginMethod.(*LoginRequest_Oauth2Request); ok {
+			return x.Oauth2Request
+		}
 	}
 	return nil
 }
+
+type isLoginRequest_LoginMethod interface {
+	isLoginRequest_LoginMethod()
+}
+
+type LoginRequest_InternalRequest struct {
+	InternalRequest *InternalLoginRequest `protobuf:"bytes,1,opt,name=internal_request,json=internalRequest,proto3,oneof"`
+}
+
+type LoginRequest_Oauth2Request struct {
+	Oauth2Request *OAuth2LoginRequest `protobuf:"bytes,2,opt,name=oauth2_request,json=oauth2Request,proto3,oneof"`
+}
+
+func (*LoginRequest_InternalRequest) isLoginRequest_LoginMethod() {}
+
+func (*LoginRequest_Oauth2Request) isLoginRequest_LoginMethod() {}
 
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -241,10 +271,11 @@ var File_auth_v1_login_message_proto protoreflect.FileDescriptor
 
 const file_auth_v1_login_message_proto_rawDesc = "" +
 	"\n" +
-	"\x1bauth/v1/login_message.proto\x12\aauth.v1\"\x9c\x01\n" +
-	"\fLoginRequest\x12H\n" +
-	"\x10internal_request\x18\x01 \x01(\v2\x1d.auth.v1.InternalLoginRequestR\x0finternalRequest\x12B\n" +
-	"\x0eoauth2_request\x18\x02 \x01(\v2\x1b.auth.v1.OAuth2LoginRequestR\roauth2Request\"9\n" +
+	"\x1bauth/v1/login_message.proto\x12\aauth.v1\"\xb0\x01\n" +
+	"\fLoginRequest\x12J\n" +
+	"\x10internal_request\x18\x01 \x01(\v2\x1d.auth.v1.InternalLoginRequestH\x00R\x0finternalRequest\x12D\n" +
+	"\x0eoauth2_request\x18\x02 \x01(\v2\x1b.auth.v1.OAuth2LoginRequestH\x00R\roauth2RequestB\x0e\n" +
+	"\flogin_method\"9\n" +
 	"\rLoginResponse\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\"H\n" +
@@ -289,6 +320,10 @@ func init() { file_auth_v1_login_message_proto_init() }
 func file_auth_v1_login_message_proto_init() {
 	if File_auth_v1_login_message_proto != nil {
 		return
+	}
+	file_auth_v1_login_message_proto_msgTypes[0].OneofWrappers = []any{
+		(*LoginRequest_InternalRequest)(nil),
+		(*LoginRequest_Oauth2Request)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
