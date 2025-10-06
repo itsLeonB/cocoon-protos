@@ -156,7 +156,6 @@ func (x *GetOAuth2UrlResponse) GetUrl() string {
 type GetOAuth2UrlRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Provider      string                 `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	State         string                 `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -198,13 +197,6 @@ func (x *GetOAuth2UrlRequest) GetProvider() string {
 	return ""
 }
 
-func (x *GetOAuth2UrlRequest) GetState() string {
-	if x != nil {
-		return x.State
-	}
-	return ""
-}
-
 var File_auth_v1_auth_message_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_message_proto_rawDesc = "" +
@@ -216,10 +208,9 @@ const file_auth_v1_auth_message_proto_rawDesc = "" +
 	"\n" +
 	"profile_id\x18\x01 \x01(\tR\tprofileId\"(\n" +
 	"\x14GetOAuth2UrlResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"G\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"1\n" +
 	"\x13GetOAuth2UrlRequest\x12\x1a\n" +
-	"\bprovider\x18\x01 \x01(\tR\bprovider\x12\x14\n" +
-	"\x05state\x18\x02 \x01(\tR\x05stateB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
+	"\bprovider\x18\x01 \x01(\tR\bproviderB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_auth_message_proto_rawDescOnce sync.Once
