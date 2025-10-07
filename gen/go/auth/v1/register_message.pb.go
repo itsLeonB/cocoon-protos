@@ -26,6 +26,7 @@ type RegisterRequest struct {
 	Email                string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password             string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	PasswordConfirmation string                 `protobuf:"bytes,3,opt,name=password_confirmation,json=passwordConfirmation,proto3" json:"password_confirmation,omitempty"`
+	VerificationUrl      string                 `protobuf:"bytes,4,opt,name=verification_url,json=verificationUrl,proto3" json:"verification_url,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -81,9 +82,16 @@ func (x *RegisterRequest) GetPasswordConfirmation() string {
 	return ""
 }
 
+func (x *RegisterRequest) GetVerificationUrl() string {
+	if x != nil {
+		return x.VerificationUrl
+	}
+	return ""
+}
+
 type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	IsVerified    bool                   `protobuf:"varint,1,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -118,24 +126,26 @@ func (*RegisterResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_register_message_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RegisterResponse) GetMessage() string {
+func (x *RegisterResponse) GetIsVerified() bool {
 	if x != nil {
-		return x.Message
+		return x.IsVerified
 	}
-	return ""
+	return false
 }
 
 var File_auth_v1_register_message_proto protoreflect.FileDescriptor
 
 const file_auth_v1_register_message_proto_rawDesc = "" +
 	"\n" +
-	"\x1eauth/v1/register_message.proto\x12\aauth.v1\"x\n" +
+	"\x1eauth/v1/register_message.proto\x12\aauth.v1\"\xa3\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x123\n" +
-	"\x15password_confirmation\x18\x03 \x01(\tR\x14passwordConfirmation\",\n" +
-	"\x10RegisterResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessageB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
+	"\x15password_confirmation\x18\x03 \x01(\tR\x14passwordConfirmation\x12)\n" +
+	"\x10verification_url\x18\x04 \x01(\tR\x0fverificationUrl\"3\n" +
+	"\x10RegisterResponse\x12\x1f\n" +
+	"\vis_verified\x18\x01 \x01(\bR\n" +
+	"isVerifiedB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_register_message_proto_rawDescOnce sync.Once

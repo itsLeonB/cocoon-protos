@@ -8,8 +8,9 @@ message RegisterRequest {
   string email = 1;
   string password = 2;
   string password_confirmation = 3;
+  string verification_url = 4;
 }
 
 message RegisterResponse {
-  string message = 1;
+  bool is_verified = 1;
 }
