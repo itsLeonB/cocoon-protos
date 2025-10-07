@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_Register_FullMethodName     = "/auth.v1.AuthService/Register"
-	AuthService_Login_FullMethodName        = "/auth.v1.AuthService/Login"
-	AuthService_VerifyToken_FullMethodName  = "/auth.v1.AuthService/VerifyToken"
-	AuthService_GetOAuth2Url_FullMethodName = "/auth.v1.AuthService/GetOAuth2Url"
+	AuthService_Register_FullMethodName           = "/auth.v1.AuthService/Register"
+	AuthService_Login_FullMethodName              = "/auth.v1.AuthService/Login"
+	AuthService_VerifyToken_FullMethodName        = "/auth.v1.AuthService/VerifyToken"
+	AuthService_GetOAuth2Url_FullMethodName       = "/auth.v1.AuthService/GetOAuth2Url"
+	AuthService_VerifyRegistration_FullMethodName = "/auth.v1.AuthService/VerifyRegistration"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -33,6 +34,7 @@ type AuthServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	VerifyToken(ctx context.Context, in *VerifyTokenRequest, opts ...grpc.CallOption) (*VerifyTokenResponse, error)
 	GetOAuth2Url(ctx context.Context, in *GetOAuth2UrlRequest, opts ...grpc.CallOption) (*GetOAuth2UrlResponse, error)
+	VerifyRegistration(ctx context.Context, in *VerifyRegistrationRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
 type authServiceClient struct {
@@ -83,6 +85,16 @@ func (c *authServiceClient) GetOAuth2Url(ctx context.Context, in *GetOAuth2UrlRe
 	return out, nil
 }
 
+func (c *authServiceClient) VerifyRegistration(ctx context.Context, in *VerifyRegistrationRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginResponse)
+	err := c.cc.Invoke(ctx, AuthService_VerifyRegistration_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServiceServer is the server API for AuthService service.
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type AuthServiceServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	VerifyToken(context.Context, *VerifyTokenRequest) (*VerifyTokenResponse, error)
 	GetOAuth2Url(context.Context, *GetOAuth2UrlRequest) (*GetOAuth2UrlResponse, error)
+	VerifyRegistration(context.Context, *VerifyRegistrationRequest) (*LoginResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedAuthServiceServer) VerifyToken(context.Context, *VerifyTokenR
 }
 func (UnimplementedAuthServiceServer) GetOAuth2Url(context.Context, *GetOAuth2UrlRequest) (*GetOAuth2UrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOAuth2Url not implemented")
+}
+func (UnimplementedAuthServiceServer) VerifyRegistration(context.Context, *VerifyRegistrationRequest) (*LoginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyRegistration not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -206,6 +222,24 @@ func _AuthService_GetOAuth2Url_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_VerifyRegistration_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyRegistrationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).VerifyRegistration(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_VerifyRegistration_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).VerifyRegistration(ctx, req.(*VerifyRegistrationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOAuth2Url",
 			Handler:    _AuthService_GetOAuth2Url_Handler,
+		},
+		{
+			MethodName: "VerifyRegistration",
+			Handler:    _AuthService_VerifyRegistration_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

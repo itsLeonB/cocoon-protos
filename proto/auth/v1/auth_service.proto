@@ -13,4 +13,5 @@ service AuthService {
   rpc Login(LoginRequest) returns (LoginResponse);
   rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
   rpc GetOAuth2Url(GetOAuth2UrlRequest) returns (GetOAuth2UrlResponse);
+  rpc VerifyRegistration(VerifyRegistrationRequest) returns (LoginResponse);
 }
