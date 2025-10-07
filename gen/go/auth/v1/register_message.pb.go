@@ -83,7 +83,7 @@ func (x *RegisterRequest) GetPasswordConfirmation() string {
 
 type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	IsVerified    bool                   `protobuf:"varint,1,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -118,11 +118,11 @@ func (*RegisterResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_register_message_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *RegisterResponse) GetMessage() string {
+func (x *RegisterResponse) GetIsVerified() bool {
 	if x != nil {
-		return x.Message
+		return x.IsVerified
 	}
-	return ""
+	return false
 }
 
 var File_auth_v1_register_message_proto protoreflect.FileDescriptor
@@ -133,9 +133,10 @@ const file_auth_v1_register_message_proto_rawDesc = "" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x123\n" +
-	"\x15password_confirmation\x18\x03 \x01(\tR\x14passwordConfirmation\",\n" +
-	"\x10RegisterResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessageB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
+	"\x15password_confirmation\x18\x03 \x01(\tR\x14passwordConfirmation\"3\n" +
+	"\x10RegisterResponse\x12\x1f\n" +
+	"\vis_verified\x18\x01 \x01(\bR\n" +
+	"isVerifiedB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_register_message_proto_rawDescOnce sync.Once

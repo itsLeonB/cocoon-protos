@@ -19,3 +19,7 @@ message GetOAuth2UrlResponse {
 message GetOAuth2UrlRequest {
   string provider = 1;
 }
+
+message VerifyRegistrationRequest {
+  string token = 1;
+}

@@ -197,6 +197,50 @@ func (x *GetOAuth2UrlRequest) GetProvider() string {
 	return ""
 }
 
+type VerifyRegistrationRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyRegistrationRequest) Reset() {
+	*x = VerifyRegistrationRequest{}
+	mi := &file_auth_v1_auth_message_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyRegistrationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyRegistrationRequest) ProtoMessage() {}
+
+func (x *VerifyRegistrationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_message_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyRegistrationRequest.ProtoReflect.Descriptor instead.
+func (*VerifyRegistrationRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_message_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *VerifyRegistrationRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 var File_auth_v1_auth_message_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_message_proto_rawDesc = "" +
@@ -210,7 +254,9 @@ const file_auth_v1_auth_message_proto_rawDesc = "" +
 	"\x14GetOAuth2UrlResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"1\n" +
 	"\x13GetOAuth2UrlRequest\x12\x1a\n" +
-	"\bprovider\x18\x01 \x01(\tR\bproviderB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
+	"\bprovider\x18\x01 \x01(\tR\bprovider\"1\n" +
+	"\x19VerifyRegistrationRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05tokenB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_auth_message_proto_rawDescOnce sync.Once
@@ -224,12 +270,13 @@ func file_auth_v1_auth_message_proto_rawDescGZIP() []byte {
 	return file_auth_v1_auth_message_proto_rawDescData
 }
 
-var file_auth_v1_auth_message_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_auth_v1_auth_message_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_auth_v1_auth_message_proto_goTypes = []any{
-	(*VerifyTokenRequest)(nil),   // 0: auth.v1.VerifyTokenRequest
-	(*VerifyTokenResponse)(nil),  // 1: auth.v1.VerifyTokenResponse
-	(*GetOAuth2UrlResponse)(nil), // 2: auth.v1.GetOAuth2UrlResponse
-	(*GetOAuth2UrlRequest)(nil),  // 3: auth.v1.GetOAuth2UrlRequest
+	(*VerifyTokenRequest)(nil),        // 0: auth.v1.VerifyTokenRequest
+	(*VerifyTokenResponse)(nil),       // 1: auth.v1.VerifyTokenResponse
+	(*GetOAuth2UrlResponse)(nil),      // 2: auth.v1.GetOAuth2UrlResponse
+	(*GetOAuth2UrlRequest)(nil),       // 3: auth.v1.GetOAuth2UrlRequest
+	(*VerifyRegistrationRequest)(nil), // 4: auth.v1.VerifyRegistrationRequest
 }
 var file_auth_v1_auth_message_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -250,7 +297,7 @@ func file_auth_v1_auth_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_message_proto_rawDesc), len(file_auth_v1_auth_message_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
