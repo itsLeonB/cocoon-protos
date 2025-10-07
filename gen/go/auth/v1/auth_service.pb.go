@@ -9,7 +9,6 @@ package auth
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -25,13 +24,13 @@ var File_auth_v1_auth_service_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1aauth/v1/auth_service.proto\x12\aauth.v1\x1a\x1aauth/v1/auth_message.proto\x1a\x1bauth/v1/login_message.proto\x1a\x1eauth/v1/register_message.proto\x1a\x1bgoogle/protobuf/empty.proto2\xef\x02\n" +
+	"\x1aauth/v1/auth_service.proto\x12\aauth.v1\x1a\x1aauth/v1/auth_message.proto\x1a\x1bauth/v1/login_message.proto\x1a\x1eauth/v1/register_message.proto2\xef\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12H\n" +
 	"\vVerifyToken\x12\x1b.auth.v1.VerifyTokenRequest\x1a\x1c.auth.v1.VerifyTokenResponse\x12K\n" +
 	"\fGetOAuth2Url\x12\x1c.auth.v1.GetOAuth2UrlRequest\x1a\x1d.auth.v1.GetOAuth2UrlResponse\x12P\n" +
-	"\x12VerifyRegistration\x12\".auth.v1.VerifyRegistrationRequest\x1a\x16.google.protobuf.EmptyB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
+	"\x12VerifyRegistration\x12\".auth.v1.VerifyRegistrationRequest\x1a\x16.auth.v1.LoginResponseB7Z5github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;authb\x06proto3"
 
 var file_auth_v1_auth_service_proto_goTypes = []any{
 	(*RegisterRequest)(nil),           // 0: auth.v1.RegisterRequest
@@ -43,7 +42,6 @@ var file_auth_v1_auth_service_proto_goTypes = []any{
 	(*LoginResponse)(nil),             // 6: auth.v1.LoginResponse
 	(*VerifyTokenResponse)(nil),       // 7: auth.v1.VerifyTokenResponse
 	(*GetOAuth2UrlResponse)(nil),      // 8: auth.v1.GetOAuth2UrlResponse
-	(*emptypb.Empty)(nil),             // 9: google.protobuf.Empty
 }
 var file_auth_v1_auth_service_proto_depIdxs = []int32{
 	0, // 0: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
@@ -55,7 +53,7 @@ var file_auth_v1_auth_service_proto_depIdxs = []int32{
 	6, // 6: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
 	7, // 7: auth.v1.AuthService.VerifyToken:output_type -> auth.v1.VerifyTokenResponse
 	8, // 8: auth.v1.AuthService.GetOAuth2Url:output_type -> auth.v1.GetOAuth2UrlResponse
-	9, // 9: auth.v1.AuthService.VerifyRegistration:output_type -> google.protobuf.Empty
+	6, // 9: auth.v1.AuthService.VerifyRegistration:output_type -> auth.v1.LoginResponse
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -35,7 +34,7 @@ type AuthServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	VerifyToken(ctx context.Context, in *VerifyTokenRequest, opts ...grpc.CallOption) (*VerifyTokenResponse, error)
 	GetOAuth2Url(ctx context.Context, in *GetOAuth2UrlRequest, opts ...grpc.CallOption) (*GetOAuth2UrlResponse, error)
-	VerifyRegistration(ctx context.Context, in *VerifyRegistrationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	VerifyRegistration(ctx context.Context, in *VerifyRegistrationRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
 type authServiceClient struct {
@@ -86,9 +85,9 @@ func (c *authServiceClient) GetOAuth2Url(ctx context.Context, in *GetOAuth2UrlRe
 	return out, nil
 }
 
-func (c *authServiceClient) VerifyRegistration(ctx context.Context, in *VerifyRegistrationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *authServiceClient) VerifyRegistration(ctx context.Context, in *VerifyRegistrationRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
+	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, AuthService_VerifyRegistration_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -104,7 +103,7 @@ type AuthServiceServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	VerifyToken(context.Context, *VerifyTokenRequest) (*VerifyTokenResponse, error)
 	GetOAuth2Url(context.Context, *GetOAuth2UrlRequest) (*GetOAuth2UrlResponse, error)
-	VerifyRegistration(context.Context, *VerifyRegistrationRequest) (*emptypb.Empty, error)
+	VerifyRegistration(context.Context, *VerifyRegistrationRequest) (*LoginResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -127,7 +126,7 @@ func (UnimplementedAuthServiceServer) VerifyToken(context.Context, *VerifyTokenR
 func (UnimplementedAuthServiceServer) GetOAuth2Url(context.Context, *GetOAuth2UrlRequest) (*GetOAuth2UrlResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOAuth2Url not implemented")
 }
-func (UnimplementedAuthServiceServer) VerifyRegistration(context.Context, *VerifyRegistrationRequest) (*emptypb.Empty, error) {
+func (UnimplementedAuthServiceServer) VerifyRegistration(context.Context, *VerifyRegistrationRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method VerifyRegistration not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
