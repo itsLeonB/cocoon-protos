@@ -5,6 +5,7 @@ package auth.v1;
 import "auth/v1/auth_message.proto";
 import "auth/v1/login_message.proto";
 import "auth/v1/register_message.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/auth/v1;auth";
 
@@ -14,4 +15,6 @@ service AuthService {
   rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
   rpc GetOAuth2Url(GetOAuth2UrlRequest) returns (GetOAuth2UrlResponse);
   rpc VerifyRegistration(VerifyRegistrationRequest) returns (LoginResponse);
+  rpc SendResetPassword(SendResetPasswordRequest) returns (google.protobuf.Empty);
+  rpc ResetPassword(ResetPasswordRequest) returns (LoginResponse);
 }
