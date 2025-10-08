@@ -27,6 +27,7 @@ type Profile struct {
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Avatar        string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -78,6 +79,13 @@ func (x *Profile) GetName() string {
 func (x *Profile) GetAvatar() string {
 	if x != nil {
 		return x.Avatar
+	}
+	return ""
+}
+
+func (x *Profile) GetEmail() string {
+	if x != nil {
+		return x.Email
 	}
 	return ""
 }
@@ -139,11 +147,12 @@ var File_profile_v1_profile_domain_proto protoreflect.FileDescriptor
 const file_profile_v1_profile_domain_proto_rawDesc = "" +
 	"\n" +
 	"\x1fprofile/v1/profile_domain.proto\x12\n" +
-	"profile.v1\x1a\x17audit/v1/metadata.proto\"N\n" +
+	"profile.v1\x1a\x17audit/v1/metadata.proto\"d\n" +
 	"\aProfile\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
-	"\x06avatar\x18\x03 \x01(\tR\x06avatar\"{\n" +
+	"\x06avatar\x18\x03 \x01(\tR\x06avatar\x12\x14\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\"{\n" +
 	"\x0fProfileResponse\x12-\n" +
 	"\aprofile\x18\x01 \x01(\v2\x13.profile.v1.ProfileR\aprofile\x129\n" +
 	"\x0eaudit_metadata\x18\x02 \x01(\v2\x12.audit.v1.MetadataR\rauditMetadataB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
