@@ -28,9 +28,8 @@ type Request struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Sender        *v1.ProfileResponse    `protobuf:"bytes,2,opt,name=sender,proto3" json:"sender,omitempty"`
 	Recipient     *v1.ProfileResponse    `protobuf:"bytes,3,opt,name=recipient,proto3" json:"recipient,omitempty"`
-	Message       string                 `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	BlockedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=blocked_at,json=blockedAt,proto3" json:"blocked_at,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	BlockedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=blocked_at,json=blockedAt,proto3" json:"blocked_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -86,13 +85,6 @@ func (x *Request) GetRecipient() *v1.ProfileResponse {
 	return nil
 }
 
-func (x *Request) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 func (x *Request) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -111,16 +103,15 @@ var File_friendship_v1_request_domain_proto protoreflect.FileDescriptor
 
 const file_friendship_v1_request_domain_proto_rawDesc = "" +
 	"\n" +
-	"\"friendship/v1/request_domain.proto\x12\rfriendship.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fprofile/v1/profile_domain.proto\"\x99\x02\n" +
+	"\"friendship/v1/request_domain.proto\x12\rfriendship.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fprofile/v1/profile_domain.proto\"\xff\x01\n" +
 	"\aRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x123\n" +
 	"\x06sender\x18\x02 \x01(\v2\x1b.profile.v1.ProfileResponseR\x06sender\x129\n" +
-	"\trecipient\x18\x03 \x01(\v2\x1b.profile.v1.ProfileResponseR\trecipient\x12\x18\n" +
-	"\amessage\x18\x04 \x01(\tR\amessage\x129\n" +
+	"\trecipient\x18\x03 \x01(\v2\x1b.profile.v1.ProfileResponseR\trecipient\x129\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"blocked_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tblockedAtBCZAgithub.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendshipb\x06proto3"
+	"blocked_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tblockedAtBCZAgithub.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendshipb\x06proto3"
 
 var (
 	file_friendship_v1_request_domain_proto_rawDescOnce sync.Once
