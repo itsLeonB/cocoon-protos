@@ -389,6 +389,190 @@ func (x *UpdateResponse) GetProfile() *ProfileResponse {
 	return nil
 }
 
+type GetByEmailRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetByEmailRequest) Reset() {
+	*x = GetByEmailRequest{}
+	mi := &file_profile_v1_profile_message_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetByEmailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetByEmailRequest) ProtoMessage() {}
+
+func (x *GetByEmailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_v1_profile_message_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetByEmailRequest.ProtoReflect.Descriptor instead.
+func (*GetByEmailRequest) Descriptor() ([]byte, []int) {
+	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetByEmailRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type GetByEmailResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Profile       *ProfileResponse       `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetByEmailResponse) Reset() {
+	*x = GetByEmailResponse{}
+	mi := &file_profile_v1_profile_message_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetByEmailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetByEmailResponse) ProtoMessage() {}
+
+func (x *GetByEmailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_v1_profile_message_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetByEmailResponse.ProtoReflect.Descriptor instead.
+func (*GetByEmailResponse) Descriptor() ([]byte, []int) {
+	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetByEmailResponse) GetProfile() *ProfileResponse {
+	if x != nil {
+		return x.Profile
+	}
+	return nil
+}
+
+type SearchByNameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	Limit         int64                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchByNameRequest) Reset() {
+	*x = SearchByNameRequest{}
+	mi := &file_profile_v1_profile_message_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchByNameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchByNameRequest) ProtoMessage() {}
+
+func (x *SearchByNameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_v1_profile_message_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchByNameRequest.ProtoReflect.Descriptor instead.
+func (*SearchByNameRequest) Descriptor() ([]byte, []int) {
+	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *SearchByNameRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *SearchByNameRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type SearchByNameResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Profiles      []*ProfileResponse     `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchByNameResponse) Reset() {
+	*x = SearchByNameResponse{}
+	mi := &file_profile_v1_profile_message_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchByNameResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchByNameResponse) ProtoMessage() {}
+
+func (x *SearchByNameResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_v1_profile_message_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchByNameResponse.ProtoReflect.Descriptor instead.
+func (*SearchByNameResponse) Descriptor() ([]byte, []int) {
+	return file_profile_v1_profile_message_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *SearchByNameResponse) GetProfiles() []*ProfileResponse {
+	if x != nil {
+		return x.Profiles
+	}
+	return nil
+}
+
 var File_profile_v1_profile_message_proto protoreflect.FileDescriptor
 
 const file_profile_v1_profile_message_proto_rawDesc = "" +
@@ -417,7 +601,16 @@ const file_profile_v1_profile_message_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12-\n" +
 	"\aprofile\x18\x02 \x01(\v2\x13.profile.v1.ProfileR\aprofile\"G\n" +
 	"\x0eUpdateResponse\x125\n" +
-	"\aprofile\x18\x01 \x01(\v2\x1b.profile.v1.ProfileResponseR\aprofileB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
+	"\aprofile\x18\x01 \x01(\v2\x1b.profile.v1.ProfileResponseR\aprofile\")\n" +
+	"\x11GetByEmailRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\"K\n" +
+	"\x12GetByEmailResponse\x125\n" +
+	"\aprofile\x18\x01 \x01(\v2\x1b.profile.v1.ProfileResponseR\aprofile\"A\n" +
+	"\x13SearchByNameRequest\x12\x14\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\"O\n" +
+	"\x14SearchByNameResponse\x127\n" +
+	"\bprofiles\x18\x01 \x03(\v2\x1b.profile.v1.ProfileResponseR\bprofilesB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
 
 var (
 	file_profile_v1_profile_message_proto_rawDescOnce sync.Once
@@ -431,30 +624,36 @@ func file_profile_v1_profile_message_proto_rawDescGZIP() []byte {
 	return file_profile_v1_profile_message_proto_rawDescData
 }
 
-var file_profile_v1_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_profile_v1_profile_message_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_profile_v1_profile_message_proto_goTypes = []any{
-	(*GetRequest)(nil),       // 0: profile.v1.GetRequest
-	(*GetResponse)(nil),      // 1: profile.v1.GetResponse
-	(*CreateRequest)(nil),    // 2: profile.v1.CreateRequest
-	(*CreateResponse)(nil),   // 3: profile.v1.CreateResponse
-	(*GetByIDsRequest)(nil),  // 4: profile.v1.GetByIDsRequest
-	(*GetByIDsResponse)(nil), // 5: profile.v1.GetByIDsResponse
-	(*UpdateRequest)(nil),    // 6: profile.v1.UpdateRequest
-	(*UpdateResponse)(nil),   // 7: profile.v1.UpdateResponse
-	(*ProfileResponse)(nil),  // 8: profile.v1.ProfileResponse
-	(*Profile)(nil),          // 9: profile.v1.Profile
+	(*GetRequest)(nil),           // 0: profile.v1.GetRequest
+	(*GetResponse)(nil),          // 1: profile.v1.GetResponse
+	(*CreateRequest)(nil),        // 2: profile.v1.CreateRequest
+	(*CreateResponse)(nil),       // 3: profile.v1.CreateResponse
+	(*GetByIDsRequest)(nil),      // 4: profile.v1.GetByIDsRequest
+	(*GetByIDsResponse)(nil),     // 5: profile.v1.GetByIDsResponse
+	(*UpdateRequest)(nil),        // 6: profile.v1.UpdateRequest
+	(*UpdateResponse)(nil),       // 7: profile.v1.UpdateResponse
+	(*GetByEmailRequest)(nil),    // 8: profile.v1.GetByEmailRequest
+	(*GetByEmailResponse)(nil),   // 9: profile.v1.GetByEmailResponse
+	(*SearchByNameRequest)(nil),  // 10: profile.v1.SearchByNameRequest
+	(*SearchByNameResponse)(nil), // 11: profile.v1.SearchByNameResponse
+	(*ProfileResponse)(nil),      // 12: profile.v1.ProfileResponse
+	(*Profile)(nil),              // 13: profile.v1.Profile
 }
 var file_profile_v1_profile_message_proto_depIdxs = []int32{
-	8, // 0: profile.v1.GetResponse.profile:type_name -> profile.v1.ProfileResponse
-	8, // 1: profile.v1.CreateResponse.profile:type_name -> profile.v1.ProfileResponse
-	8, // 2: profile.v1.GetByIDsResponse.profiles:type_name -> profile.v1.ProfileResponse
-	9, // 3: profile.v1.UpdateRequest.profile:type_name -> profile.v1.Profile
-	8, // 4: profile.v1.UpdateResponse.profile:type_name -> profile.v1.ProfileResponse
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	12, // 0: profile.v1.GetResponse.profile:type_name -> profile.v1.ProfileResponse
+	12, // 1: profile.v1.CreateResponse.profile:type_name -> profile.v1.ProfileResponse
+	12, // 2: profile.v1.GetByIDsResponse.profiles:type_name -> profile.v1.ProfileResponse
+	13, // 3: profile.v1.UpdateRequest.profile:type_name -> profile.v1.Profile
+	12, // 4: profile.v1.UpdateResponse.profile:type_name -> profile.v1.ProfileResponse
+	12, // 5: profile.v1.GetByEmailResponse.profile:type_name -> profile.v1.ProfileResponse
+	12, // 6: profile.v1.SearchByNameResponse.profiles:type_name -> profile.v1.ProfileResponse
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_profile_v1_profile_message_proto_init() }
@@ -470,7 +669,7 @@ func file_profile_v1_profile_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_profile_v1_profile_message_proto_rawDesc), len(file_profile_v1_profile_message_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

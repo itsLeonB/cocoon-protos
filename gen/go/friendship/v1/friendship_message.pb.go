@@ -132,9 +132,10 @@ type FriendshipResponse struct {
 	Type          FriendshipType         `protobuf:"varint,2,opt,name=type,proto3,enum=friendship.v1.FriendshipType" json:"type,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,3,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	ProfileName   string                 `protobuf:"bytes,4,opt,name=profile_name,json=profileName,proto3" json:"profile_name,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	ProfileAvatar string                 `protobuf:"bytes,5,opt,name=profile_avatar,json=profileAvatar,proto3" json:"profile_avatar,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -193,6 +194,13 @@ func (x *FriendshipResponse) GetProfileId() string {
 func (x *FriendshipResponse) GetProfileName() string {
 	if x != nil {
 		return x.ProfileName
+	}
+	return ""
+}
+
+func (x *FriendshipResponse) GetProfileAvatar() string {
+	if x != nil {
+		return x.ProfileAvatar
 	}
 	return ""
 }
@@ -647,19 +655,20 @@ const file_friendship_v1_friendship_message_proto_rawDesc = "" +
 	"\x16CreateAnonymousRequest\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x01 \x01(\tR\tprofileId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xca\x02\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\xf1\x02\n" +
 	"\x12FriendshipResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x121\n" +
 	"\x04type\x18\x02 \x01(\x0e2\x1d.friendship.v1.FriendshipTypeR\x04type\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x03 \x01(\tR\tprofileId\x12!\n" +
-	"\fprofile_name\x18\x04 \x01(\tR\vprofileName\x129\n" +
+	"\fprofile_name\x18\x04 \x01(\tR\vprofileName\x12%\n" +
+	"\x0eprofile_avatar\x18\x05 \x01(\tR\rprofileAvatar\x129\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
 	"\n" +
-	"deleted_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"\\\n" +
+	"deleted_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt\"\\\n" +
 	"\x17CreateAnonymousResponse\x12A\n" +
 	"\n" +
 	"friendship\x18\x01 \x01(\v2!.friendship.v1.FriendshipResponseR\n" +

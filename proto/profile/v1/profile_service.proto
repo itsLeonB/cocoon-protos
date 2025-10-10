@@ -11,4 +11,6 @@ service ProfileService {
   rpc Create(CreateRequest) returns (CreateResponse);
   rpc GetByIDs(GetByIDsRequest) returns (GetByIDsResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc GetByEmail(GetByEmailRequest) returns (GetByEmailResponse);
+  rpc SearchByName(SearchByNameRequest) returns (SearchByNameResponse);
 }

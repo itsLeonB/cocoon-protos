@@ -39,3 +39,20 @@ message UpdateRequest {
 message UpdateResponse {
   ProfileResponse profile = 1;
 }
+
+message GetByEmailRequest {
+  string email = 1;
+}
+
+message GetByEmailResponse {
+  ProfileResponse profile = 1;
+}
+
+message SearchByNameRequest {
+  string query = 1;
+  int64 limit = 2;
+}
+
+message SearchByNameResponse {
+  repeated ProfileResponse profiles = 1;
+}
