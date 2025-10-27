@@ -19,10 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProfileService_Get_FullMethodName      = "/profile.v1.ProfileService/Get"
-	ProfileService_Create_FullMethodName   = "/profile.v1.ProfileService/Create"
-	ProfileService_GetByIDs_FullMethodName = "/profile.v1.ProfileService/GetByIDs"
-	ProfileService_Update_FullMethodName   = "/profile.v1.ProfileService/Update"
+	ProfileService_Get_FullMethodName          = "/profile.v1.ProfileService/Get"
+	ProfileService_Create_FullMethodName       = "/profile.v1.ProfileService/Create"
+	ProfileService_GetByIDs_FullMethodName     = "/profile.v1.ProfileService/GetByIDs"
+	ProfileService_Update_FullMethodName       = "/profile.v1.ProfileService/Update"
+	ProfileService_GetByEmail_FullMethodName   = "/profile.v1.ProfileService/GetByEmail"
+	ProfileService_SearchByName_FullMethodName = "/profile.v1.ProfileService/SearchByName"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -33,6 +35,8 @@ type ProfileServiceClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	GetByIDs(ctx context.Context, in *GetByIDsRequest, opts ...grpc.CallOption) (*GetByIDsResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+	GetByEmail(ctx context.Context, in *GetByEmailRequest, opts ...grpc.CallOption) (*GetByEmailResponse, error)
+	SearchByName(ctx context.Context, in *SearchByNameRequest, opts ...grpc.CallOption) (*SearchByNameResponse, error)
 }
 
 type profileServiceClient struct {
@@ -83,6 +87,26 @@ func (c *profileServiceClient) Update(ctx context.Context, in *UpdateRequest, op
 	return out, nil
 }
 
+func (c *profileServiceClient) GetByEmail(ctx context.Context, in *GetByEmailRequest, opts ...grpc.CallOption) (*GetByEmailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetByEmailResponse)
+	err := c.cc.Invoke(ctx, ProfileService_GetByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) SearchByName(ctx context.Context, in *SearchByNameRequest, opts ...grpc.CallOption) (*SearchByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchByNameResponse)
+	err := c.cc.Invoke(ctx, ProfileService_SearchByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProfileServiceServer is the server API for ProfileService service.
 // All implementations must embed UnimplementedProfileServiceServer
 // for forward compatibility.
@@ -91,6 +115,8 @@ type ProfileServiceServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	GetByIDs(context.Context, *GetByIDsRequest) (*GetByIDsResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	GetByEmail(context.Context, *GetByEmailRequest) (*GetByEmailResponse, error)
+	SearchByName(context.Context, *SearchByNameRequest) (*SearchByNameResponse, error)
 	mustEmbedUnimplementedProfileServiceServer()
 }
 
@@ -112,6 +138,12 @@ func (UnimplementedProfileServiceServer) GetByIDs(context.Context, *GetByIDsRequ
 }
 func (UnimplementedProfileServiceServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedProfileServiceServer) GetByEmail(context.Context, *GetByEmailRequest) (*GetByEmailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByEmail not implemented")
+}
+func (UnimplementedProfileServiceServer) SearchByName(context.Context, *SearchByNameRequest) (*SearchByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchByName not implemented")
 }
 func (UnimplementedProfileServiceServer) mustEmbedUnimplementedProfileServiceServer() {}
 func (UnimplementedProfileServiceServer) testEmbeddedByValue()                        {}
@@ -206,6 +238,42 @@ func _ProfileService_Update_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProfileService_GetByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetByEmail(ctx, req.(*GetByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_SearchByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).SearchByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_SearchByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).SearchByName(ctx, req.(*SearchByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProfileService_ServiceDesc is the grpc.ServiceDesc for ProfileService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +296,14 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _ProfileService_Update_Handler,
+		},
+		{
+			MethodName: "GetByEmail",
+			Handler:    _ProfileService_GetByEmail_Handler,
+		},
+		{
+			MethodName: "SearchByName",
+			Handler:    _ProfileService_SearchByName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

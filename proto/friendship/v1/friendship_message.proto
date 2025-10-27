@@ -25,9 +25,10 @@ message FriendshipResponse {
   FriendshipType type = 2;
   string profile_id = 3;
   string profile_name = 4;
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
-  google.protobuf.Timestamp deleted_at = 7;
+  string profile_avatar = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  google.protobuf.Timestamp deleted_at = 8;
 }
 
 message CreateAnonymousResponse {
@@ -71,4 +72,9 @@ message IsFriendsRequest {
 message IsFriendsResponse {
   bool is_friends = 1;
   bool is_anonymous = 2;
+}
+
+message RemoveAnonymousRequest {
+  string user_profile_id = 1;
+  string friend_profile_id = 2;
 }

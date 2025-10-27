@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package friendship.v1;
+
+import "google/protobuf/timestamp.proto";
+import "profile/v1/profile_domain.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendship";
+
+message Request {
+  string id = 1;
+  profile.v1.ProfileResponse sender = 2;
+  profile.v1.ProfileResponse recipient = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp blocked_at = 5;
+}

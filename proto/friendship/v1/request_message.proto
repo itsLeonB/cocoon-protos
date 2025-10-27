@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package friendship.v1;
+
+import "friendship/v1/friendship_message.proto";
+import "friendship/v1/request_domain.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendship";
+
+message SendRequest {
+  string user_profile_id = 1;
+  string friend_profile_id = 2;
+}
+
+message GetAllSentRequest {
+  string user_profile_id = 1;
+}
+
+message GetAllSentResponse {
+  repeated Request requests = 1;
+}
+
+message CancelRequest {
+  string user_profile_id = 1;
+  string request_id = 2;
+}
+
+message GetAllReceivedRequest {
+  string user_profile_id = 1;
+}
+
+message GetAllReceivedResponse {
+  repeated Request requests = 1;
+}
+
+message IgnoreRequest {
+  string user_profile_id = 1;
+  string request_id = 2;
+}
+
+message BlockRequest {
+  string user_profile_id = 1;
+  string request_id = 2;
+}
+
+message UnblockRequest {
+  string user_profile_id = 1;
+  string request_id = 2;
+}
+
+message AcceptRequest {
+  string user_profile_id = 1;
+  string request_id = 2;
+}
+
+message AcceptResponse {
+  friendship.v1.FriendshipResponse friendship = 1;
+}

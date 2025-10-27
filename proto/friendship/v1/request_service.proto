@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package friendship.v1;
+
+import "friendship/v1/request_message.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendship";
+
+service RequestService {
+  rpc Send(SendRequest) returns (google.protobuf.Empty);
+  rpc GetAllSent(GetAllSentRequest) returns (GetAllSentResponse);
+  rpc Cancel(CancelRequest) returns (google.protobuf.Empty);
+  rpc GetAllReceived(GetAllReceivedRequest) returns (GetAllReceivedResponse);
+  rpc Ignore(IgnoreRequest) returns (google.protobuf.Empty);
+  rpc Block(BlockRequest) returns (google.protobuf.Empty);
+  rpc Unblock(UnblockRequest) returns (google.protobuf.Empty);
+  rpc Accept(AcceptRequest) returns (AcceptResponse);
+}

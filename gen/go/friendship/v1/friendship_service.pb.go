@@ -9,6 +9,7 @@ package friendship
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -24,35 +25,40 @@ var File_friendship_v1_friendship_service_proto protoreflect.FileDescriptor
 
 const file_friendship_v1_friendship_service_proto_rawDesc = "" +
 	"\n" +
-	"&friendship/v1/friendship_service.proto\x12\rfriendship.v1\x1a&friendship/v1/friendship_message.proto2\xdf\x02\n" +
+	"&friendship/v1/friendship_service.proto\x12\rfriendship.v1\x1a&friendship/v1/friendship_message.proto\x1a\x1bgoogle/protobuf/empty.proto2\xb1\x03\n" +
 	"\x11FriendshipService\x12`\n" +
 	"\x0fCreateAnonymous\x12%.friendship.v1.CreateAnonymousRequest\x1a&.friendship.v1.CreateAnonymousResponse\x12E\n" +
 	"\x06GetAll\x12\x1c.friendship.v1.GetAllRequest\x1a\x1d.friendship.v1.GetAllResponse\x12Q\n" +
 	"\n" +
 	"GetDetails\x12 .friendship.v1.GetDetailsRequest\x1a!.friendship.v1.GetDetailsResponse\x12N\n" +
-	"\tIsFriends\x12\x1f.friendship.v1.IsFriendsRequest\x1a .friendship.v1.IsFriendsResponseBCZAgithub.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendshipb\x06proto3"
+	"\tIsFriends\x12\x1f.friendship.v1.IsFriendsRequest\x1a .friendship.v1.IsFriendsResponse\x12P\n" +
+	"\x0fRemoveAnonymous\x12%.friendship.v1.RemoveAnonymousRequest\x1a\x16.google.protobuf.EmptyBCZAgithub.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;friendshipb\x06proto3"
 
 var file_friendship_v1_friendship_service_proto_goTypes = []any{
 	(*CreateAnonymousRequest)(nil),  // 0: friendship.v1.CreateAnonymousRequest
 	(*GetAllRequest)(nil),           // 1: friendship.v1.GetAllRequest
 	(*GetDetailsRequest)(nil),       // 2: friendship.v1.GetDetailsRequest
 	(*IsFriendsRequest)(nil),        // 3: friendship.v1.IsFriendsRequest
-	(*CreateAnonymousResponse)(nil), // 4: friendship.v1.CreateAnonymousResponse
-	(*GetAllResponse)(nil),          // 5: friendship.v1.GetAllResponse
-	(*GetDetailsResponse)(nil),      // 6: friendship.v1.GetDetailsResponse
-	(*IsFriendsResponse)(nil),       // 7: friendship.v1.IsFriendsResponse
+	(*RemoveAnonymousRequest)(nil),  // 4: friendship.v1.RemoveAnonymousRequest
+	(*CreateAnonymousResponse)(nil), // 5: friendship.v1.CreateAnonymousResponse
+	(*GetAllResponse)(nil),          // 6: friendship.v1.GetAllResponse
+	(*GetDetailsResponse)(nil),      // 7: friendship.v1.GetDetailsResponse
+	(*IsFriendsResponse)(nil),       // 8: friendship.v1.IsFriendsResponse
+	(*emptypb.Empty)(nil),           // 9: google.protobuf.Empty
 }
 var file_friendship_v1_friendship_service_proto_depIdxs = []int32{
 	0, // 0: friendship.v1.FriendshipService.CreateAnonymous:input_type -> friendship.v1.CreateAnonymousRequest
 	1, // 1: friendship.v1.FriendshipService.GetAll:input_type -> friendship.v1.GetAllRequest
 	2, // 2: friendship.v1.FriendshipService.GetDetails:input_type -> friendship.v1.GetDetailsRequest
 	3, // 3: friendship.v1.FriendshipService.IsFriends:input_type -> friendship.v1.IsFriendsRequest
-	4, // 4: friendship.v1.FriendshipService.CreateAnonymous:output_type -> friendship.v1.CreateAnonymousResponse
-	5, // 5: friendship.v1.FriendshipService.GetAll:output_type -> friendship.v1.GetAllResponse
-	6, // 6: friendship.v1.FriendshipService.GetDetails:output_type -> friendship.v1.GetDetailsResponse
-	7, // 7: friendship.v1.FriendshipService.IsFriends:output_type -> friendship.v1.IsFriendsResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	4, // 4: friendship.v1.FriendshipService.RemoveAnonymous:input_type -> friendship.v1.RemoveAnonymousRequest
+	5, // 5: friendship.v1.FriendshipService.CreateAnonymous:output_type -> friendship.v1.CreateAnonymousResponse
+	6, // 6: friendship.v1.FriendshipService.GetAll:output_type -> friendship.v1.GetAllResponse
+	7, // 7: friendship.v1.FriendshipService.GetDetails:output_type -> friendship.v1.GetDetailsResponse
+	8, // 8: friendship.v1.FriendshipService.IsFriends:output_type -> friendship.v1.IsFriendsResponse
+	9, // 9: friendship.v1.FriendshipService.RemoveAnonymous:output_type -> google.protobuf.Empty
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

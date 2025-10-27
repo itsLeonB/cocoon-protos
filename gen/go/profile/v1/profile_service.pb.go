@@ -25,37 +25,48 @@ var File_profile_v1_profile_service_proto protoreflect.FileDescriptor
 const file_profile_v1_profile_service_proto_rawDesc = "" +
 	"\n" +
 	" profile/v1/profile_service.proto\x12\n" +
-	"profile.v1\x1a profile/v1/profile_message.proto2\x91\x02\n" +
+	"profile.v1\x1a profile/v1/profile_message.proto2\xb1\x03\n" +
 	"\x0eProfileService\x126\n" +
 	"\x03Get\x12\x16.profile.v1.GetRequest\x1a\x17.profile.v1.GetResponse\x12?\n" +
 	"\x06Create\x12\x19.profile.v1.CreateRequest\x1a\x1a.profile.v1.CreateResponse\x12E\n" +
 	"\bGetByIDs\x12\x1b.profile.v1.GetByIDsRequest\x1a\x1c.profile.v1.GetByIDsResponse\x12?\n" +
-	"\x06Update\x12\x19.profile.v1.UpdateRequest\x1a\x1a.profile.v1.UpdateResponseB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
+	"\x06Update\x12\x19.profile.v1.UpdateRequest\x1a\x1a.profile.v1.UpdateResponse\x12K\n" +
+	"\n" +
+	"GetByEmail\x12\x1d.profile.v1.GetByEmailRequest\x1a\x1e.profile.v1.GetByEmailResponse\x12Q\n" +
+	"\fSearchByName\x12\x1f.profile.v1.SearchByNameRequest\x1a .profile.v1.SearchByNameResponseB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
 
 var file_profile_v1_profile_service_proto_goTypes = []any{
-	(*GetRequest)(nil),       // 0: profile.v1.GetRequest
-	(*CreateRequest)(nil),    // 1: profile.v1.CreateRequest
-	(*GetByIDsRequest)(nil),  // 2: profile.v1.GetByIDsRequest
-	(*UpdateRequest)(nil),    // 3: profile.v1.UpdateRequest
-	(*GetResponse)(nil),      // 4: profile.v1.GetResponse
-	(*CreateResponse)(nil),   // 5: profile.v1.CreateResponse
-	(*GetByIDsResponse)(nil), // 6: profile.v1.GetByIDsResponse
-	(*UpdateResponse)(nil),   // 7: profile.v1.UpdateResponse
+	(*GetRequest)(nil),           // 0: profile.v1.GetRequest
+	(*CreateRequest)(nil),        // 1: profile.v1.CreateRequest
+	(*GetByIDsRequest)(nil),      // 2: profile.v1.GetByIDsRequest
+	(*UpdateRequest)(nil),        // 3: profile.v1.UpdateRequest
+	(*GetByEmailRequest)(nil),    // 4: profile.v1.GetByEmailRequest
+	(*SearchByNameRequest)(nil),  // 5: profile.v1.SearchByNameRequest
+	(*GetResponse)(nil),          // 6: profile.v1.GetResponse
+	(*CreateResponse)(nil),       // 7: profile.v1.CreateResponse
+	(*GetByIDsResponse)(nil),     // 8: profile.v1.GetByIDsResponse
+	(*UpdateResponse)(nil),       // 9: profile.v1.UpdateResponse
+	(*GetByEmailResponse)(nil),   // 10: profile.v1.GetByEmailResponse
+	(*SearchByNameResponse)(nil), // 11: profile.v1.SearchByNameResponse
 }
 var file_profile_v1_profile_service_proto_depIdxs = []int32{
-	0, // 0: profile.v1.ProfileService.Get:input_type -> profile.v1.GetRequest
-	1, // 1: profile.v1.ProfileService.Create:input_type -> profile.v1.CreateRequest
-	2, // 2: profile.v1.ProfileService.GetByIDs:input_type -> profile.v1.GetByIDsRequest
-	3, // 3: profile.v1.ProfileService.Update:input_type -> profile.v1.UpdateRequest
-	4, // 4: profile.v1.ProfileService.Get:output_type -> profile.v1.GetResponse
-	5, // 5: profile.v1.ProfileService.Create:output_type -> profile.v1.CreateResponse
-	6, // 6: profile.v1.ProfileService.GetByIDs:output_type -> profile.v1.GetByIDsResponse
-	7, // 7: profile.v1.ProfileService.Update:output_type -> profile.v1.UpdateResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: profile.v1.ProfileService.Get:input_type -> profile.v1.GetRequest
+	1,  // 1: profile.v1.ProfileService.Create:input_type -> profile.v1.CreateRequest
+	2,  // 2: profile.v1.ProfileService.GetByIDs:input_type -> profile.v1.GetByIDsRequest
+	3,  // 3: profile.v1.ProfileService.Update:input_type -> profile.v1.UpdateRequest
+	4,  // 4: profile.v1.ProfileService.GetByEmail:input_type -> profile.v1.GetByEmailRequest
+	5,  // 5: profile.v1.ProfileService.SearchByName:input_type -> profile.v1.SearchByNameRequest
+	6,  // 6: profile.v1.ProfileService.Get:output_type -> profile.v1.GetResponse
+	7,  // 7: profile.v1.ProfileService.Create:output_type -> profile.v1.CreateResponse
+	8,  // 8: profile.v1.ProfileService.GetByIDs:output_type -> profile.v1.GetByIDsResponse
+	9,  // 9: profile.v1.ProfileService.Update:output_type -> profile.v1.UpdateResponse
+	10, // 10: profile.v1.ProfileService.GetByEmail:output_type -> profile.v1.GetByEmailResponse
+	11, // 11: profile.v1.ProfileService.SearchByName:output_type -> profile.v1.SearchByNameResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_profile_v1_profile_service_proto_init() }
