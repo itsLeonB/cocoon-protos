@@ -647,6 +647,58 @@ func (x *IsFriendsResponse) GetIsAnonymous() bool {
 	return false
 }
 
+type RemoveAnonymousRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	UserProfileId   string                 `protobuf:"bytes,1,opt,name=user_profile_id,json=userProfileId,proto3" json:"user_profile_id,omitempty"`
+	FriendProfileId string                 `protobuf:"bytes,2,opt,name=friend_profile_id,json=friendProfileId,proto3" json:"friend_profile_id,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *RemoveAnonymousRequest) Reset() {
+	*x = RemoveAnonymousRequest{}
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveAnonymousRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveAnonymousRequest) ProtoMessage() {}
+
+func (x *RemoveAnonymousRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_friendship_v1_friendship_message_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveAnonymousRequest.ProtoReflect.Descriptor instead.
+func (*RemoveAnonymousRequest) Descriptor() ([]byte, []int) {
+	return file_friendship_v1_friendship_message_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *RemoveAnonymousRequest) GetUserProfileId() string {
+	if x != nil {
+		return x.UserProfileId
+	}
+	return ""
+}
+
+func (x *RemoveAnonymousRequest) GetFriendProfileId() string {
+	if x != nil {
+		return x.FriendProfileId
+	}
+	return ""
+}
+
 var File_friendship_v1_friendship_message_proto protoreflect.FileDescriptor
 
 const file_friendship_v1_friendship_message_proto_rawDesc = "" +
@@ -710,7 +762,10 @@ const file_friendship_v1_friendship_message_proto_rawDesc = "" +
 	"\x11IsFriendsResponse\x12\x1d\n" +
 	"\n" +
 	"is_friends\x18\x01 \x01(\bR\tisFriends\x12!\n" +
-	"\fis_anonymous\x18\x02 \x01(\bR\visAnonymous*e\n" +
+	"\fis_anonymous\x18\x02 \x01(\bR\visAnonymous\"l\n" +
+	"\x16RemoveAnonymousRequest\x12&\n" +
+	"\x0fuser_profile_id\x18\x01 \x01(\tR\ruserProfileId\x12*\n" +
+	"\x11friend_profile_id\x18\x02 \x01(\tR\x0ffriendProfileId*e\n" +
 	"\x0eFriendshipType\x12\x1f\n" +
 	"\x1bFRIENDSHIP_TYPE_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14FRIENDSHIP_TYPE_ANON\x10\x01\x12\x18\n" +
@@ -729,7 +784,7 @@ func file_friendship_v1_friendship_message_proto_rawDescGZIP() []byte {
 }
 
 var file_friendship_v1_friendship_message_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_friendship_v1_friendship_message_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_friendship_v1_friendship_message_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_friendship_v1_friendship_message_proto_goTypes = []any{
 	(FriendshipType)(0),             // 0: friendship.v1.FriendshipType
 	(*CreateAnonymousRequest)(nil),  // 1: friendship.v1.CreateAnonymousRequest
@@ -741,18 +796,19 @@ var file_friendship_v1_friendship_message_proto_goTypes = []any{
 	(*GetDetailsRequest)(nil),       // 7: friendship.v1.GetDetailsRequest
 	(*IsFriendsRequest)(nil),        // 8: friendship.v1.IsFriendsRequest
 	(*IsFriendsResponse)(nil),       // 9: friendship.v1.IsFriendsResponse
-	(*timestamppb.Timestamp)(nil),   // 10: google.protobuf.Timestamp
+	(*RemoveAnonymousRequest)(nil),  // 10: friendship.v1.RemoveAnonymousRequest
+	(*timestamppb.Timestamp)(nil),   // 11: google.protobuf.Timestamp
 }
 var file_friendship_v1_friendship_message_proto_depIdxs = []int32{
 	0,  // 0: friendship.v1.FriendshipResponse.type:type_name -> friendship.v1.FriendshipType
-	10, // 1: friendship.v1.FriendshipResponse.created_at:type_name -> google.protobuf.Timestamp
-	10, // 2: friendship.v1.FriendshipResponse.updated_at:type_name -> google.protobuf.Timestamp
-	10, // 3: friendship.v1.FriendshipResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	11, // 1: friendship.v1.FriendshipResponse.created_at:type_name -> google.protobuf.Timestamp
+	11, // 2: friendship.v1.FriendshipResponse.updated_at:type_name -> google.protobuf.Timestamp
+	11, // 3: friendship.v1.FriendshipResponse.deleted_at:type_name -> google.protobuf.Timestamp
 	2,  // 4: friendship.v1.CreateAnonymousResponse.friendship:type_name -> friendship.v1.FriendshipResponse
 	0,  // 5: friendship.v1.GetDetailsResponse.type:type_name -> friendship.v1.FriendshipType
-	10, // 6: friendship.v1.GetDetailsResponse.created_at:type_name -> google.protobuf.Timestamp
-	10, // 7: friendship.v1.GetDetailsResponse.updated_at:type_name -> google.protobuf.Timestamp
-	10, // 8: friendship.v1.GetDetailsResponse.deleted_at:type_name -> google.protobuf.Timestamp
+	11, // 6: friendship.v1.GetDetailsResponse.created_at:type_name -> google.protobuf.Timestamp
+	11, // 7: friendship.v1.GetDetailsResponse.updated_at:type_name -> google.protobuf.Timestamp
+	11, // 8: friendship.v1.GetDetailsResponse.deleted_at:type_name -> google.protobuf.Timestamp
 	2,  // 9: friendship.v1.GetAllResponse.friendships:type_name -> friendship.v1.FriendshipResponse
 	10, // [10:10] is the sub-list for method output_type
 	10, // [10:10] is the sub-list for method input_type
@@ -772,7 +828,7 @@ func file_friendship_v1_friendship_message_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_friendship_v1_friendship_message_proto_rawDesc), len(file_friendship_v1_friendship_message_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

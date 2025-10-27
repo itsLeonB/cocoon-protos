@@ -10,7 +10,6 @@ option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/friendship/v1;frie
 message SendRequest {
   string user_profile_id = 1;
   string friend_profile_id = 2;
-  string message = 3;
 }
 
 message GetAllSentRequest {

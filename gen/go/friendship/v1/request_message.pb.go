@@ -25,7 +25,6 @@ type SendRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	UserProfileId   string                 `protobuf:"bytes,1,opt,name=user_profile_id,json=userProfileId,proto3" json:"user_profile_id,omitempty"`
 	FriendProfileId string                 `protobuf:"bytes,2,opt,name=friend_profile_id,json=friendProfileId,proto3" json:"friend_profile_id,omitempty"`
-	Message         string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -70,13 +69,6 @@ func (x *SendRequest) GetUserProfileId() string {
 func (x *SendRequest) GetFriendProfileId() string {
 	if x != nil {
 		return x.FriendProfileId
-	}
-	return ""
-}
-
-func (x *SendRequest) GetMessage() string {
-	if x != nil {
-		return x.Message
 	}
 	return ""
 }
@@ -565,11 +557,10 @@ var File_friendship_v1_request_message_proto protoreflect.FileDescriptor
 
 const file_friendship_v1_request_message_proto_rawDesc = "" +
 	"\n" +
-	"#friendship/v1/request_message.proto\x12\rfriendship.v1\x1a&friendship/v1/friendship_message.proto\x1a\"friendship/v1/request_domain.proto\"{\n" +
+	"#friendship/v1/request_message.proto\x12\rfriendship.v1\x1a&friendship/v1/friendship_message.proto\x1a\"friendship/v1/request_domain.proto\"a\n" +
 	"\vSendRequest\x12&\n" +
 	"\x0fuser_profile_id\x18\x01 \x01(\tR\ruserProfileId\x12*\n" +
-	"\x11friend_profile_id\x18\x02 \x01(\tR\x0ffriendProfileId\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\";\n" +
+	"\x11friend_profile_id\x18\x02 \x01(\tR\x0ffriendProfileId\";\n" +
 	"\x11GetAllSentRequest\x12&\n" +
 	"\x0fuser_profile_id\x18\x01 \x01(\tR\ruserProfileId\"H\n" +
 	"\x12GetAllSentResponse\x122\n" +

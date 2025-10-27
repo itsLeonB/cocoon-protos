@@ -73,3 +73,8 @@ message IsFriendsResponse {
   bool is_friends = 1;
   bool is_anonymous = 2;
 }
+
+message RemoveAnonymousRequest {
+  string user_profile_id = 1;
+  string friend_profile_id = 2;
+}
