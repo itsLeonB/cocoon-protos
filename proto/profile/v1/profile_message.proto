@@ -56,3 +56,9 @@ message SearchByNameRequest {
 message SearchByNameResponse {
   repeated ProfileResponse profiles = 1;
 }
+
+message AssociateRequest {
+  string user_profile_id = 1;
+  string real_profile_id = 2;
+  string anon_profile_id = 3;
+}

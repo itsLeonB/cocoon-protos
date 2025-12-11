@@ -9,6 +9,7 @@ package profile
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -25,7 +26,7 @@ var File_profile_v1_profile_service_proto protoreflect.FileDescriptor
 const file_profile_v1_profile_service_proto_rawDesc = "" +
 	"\n" +
 	" profile/v1/profile_service.proto\x12\n" +
-	"profile.v1\x1a profile/v1/profile_message.proto2\xb1\x03\n" +
+	"profile.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a profile/v1/profile_message.proto2\xf4\x03\n" +
 	"\x0eProfileService\x126\n" +
 	"\x03Get\x12\x16.profile.v1.GetRequest\x1a\x17.profile.v1.GetResponse\x12?\n" +
 	"\x06Create\x12\x19.profile.v1.CreateRequest\x1a\x1a.profile.v1.CreateResponse\x12E\n" +
@@ -33,7 +34,8 @@ const file_profile_v1_profile_service_proto_rawDesc = "" +
 	"\x06Update\x12\x19.profile.v1.UpdateRequest\x1a\x1a.profile.v1.UpdateResponse\x12K\n" +
 	"\n" +
 	"GetByEmail\x12\x1d.profile.v1.GetByEmailRequest\x1a\x1e.profile.v1.GetByEmailResponse\x12Q\n" +
-	"\fSearchByName\x12\x1f.profile.v1.SearchByNameRequest\x1a .profile.v1.SearchByNameResponseB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
+	"\fSearchByName\x12\x1f.profile.v1.SearchByNameRequest\x1a .profile.v1.SearchByNameResponse\x12A\n" +
+	"\tAssociate\x12\x1c.profile.v1.AssociateRequest\x1a\x16.google.protobuf.EmptyB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
 
 var file_profile_v1_profile_service_proto_goTypes = []any{
 	(*GetRequest)(nil),           // 0: profile.v1.GetRequest
@@ -42,12 +44,14 @@ var file_profile_v1_profile_service_proto_goTypes = []any{
 	(*UpdateRequest)(nil),        // 3: profile.v1.UpdateRequest
 	(*GetByEmailRequest)(nil),    // 4: profile.v1.GetByEmailRequest
 	(*SearchByNameRequest)(nil),  // 5: profile.v1.SearchByNameRequest
-	(*GetResponse)(nil),          // 6: profile.v1.GetResponse
-	(*CreateResponse)(nil),       // 7: profile.v1.CreateResponse
-	(*GetByIDsResponse)(nil),     // 8: profile.v1.GetByIDsResponse
-	(*UpdateResponse)(nil),       // 9: profile.v1.UpdateResponse
-	(*GetByEmailResponse)(nil),   // 10: profile.v1.GetByEmailResponse
-	(*SearchByNameResponse)(nil), // 11: profile.v1.SearchByNameResponse
+	(*AssociateRequest)(nil),     // 6: profile.v1.AssociateRequest
+	(*GetResponse)(nil),          // 7: profile.v1.GetResponse
+	(*CreateResponse)(nil),       // 8: profile.v1.CreateResponse
+	(*GetByIDsResponse)(nil),     // 9: profile.v1.GetByIDsResponse
+	(*UpdateResponse)(nil),       // 10: profile.v1.UpdateResponse
+	(*GetByEmailResponse)(nil),   // 11: profile.v1.GetByEmailResponse
+	(*SearchByNameResponse)(nil), // 12: profile.v1.SearchByNameResponse
+	(*emptypb.Empty)(nil),        // 13: google.protobuf.Empty
 }
 var file_profile_v1_profile_service_proto_depIdxs = []int32{
 	0,  // 0: profile.v1.ProfileService.Get:input_type -> profile.v1.GetRequest
@@ -56,14 +60,16 @@ var file_profile_v1_profile_service_proto_depIdxs = []int32{
 	3,  // 3: profile.v1.ProfileService.Update:input_type -> profile.v1.UpdateRequest
 	4,  // 4: profile.v1.ProfileService.GetByEmail:input_type -> profile.v1.GetByEmailRequest
 	5,  // 5: profile.v1.ProfileService.SearchByName:input_type -> profile.v1.SearchByNameRequest
-	6,  // 6: profile.v1.ProfileService.Get:output_type -> profile.v1.GetResponse
-	7,  // 7: profile.v1.ProfileService.Create:output_type -> profile.v1.CreateResponse
-	8,  // 8: profile.v1.ProfileService.GetByIDs:output_type -> profile.v1.GetByIDsResponse
-	9,  // 9: profile.v1.ProfileService.Update:output_type -> profile.v1.UpdateResponse
-	10, // 10: profile.v1.ProfileService.GetByEmail:output_type -> profile.v1.GetByEmailResponse
-	11, // 11: profile.v1.ProfileService.SearchByName:output_type -> profile.v1.SearchByNameResponse
-	6,  // [6:12] is the sub-list for method output_type
-	0,  // [0:6] is the sub-list for method input_type
+	6,  // 6: profile.v1.ProfileService.Associate:input_type -> profile.v1.AssociateRequest
+	7,  // 7: profile.v1.ProfileService.Get:output_type -> profile.v1.GetResponse
+	8,  // 8: profile.v1.ProfileService.Create:output_type -> profile.v1.CreateResponse
+	9,  // 9: profile.v1.ProfileService.GetByIDs:output_type -> profile.v1.GetByIDsResponse
+	10, // 10: profile.v1.ProfileService.Update:output_type -> profile.v1.UpdateResponse
+	11, // 11: profile.v1.ProfileService.GetByEmail:output_type -> profile.v1.GetByEmailResponse
+	12, // 12: profile.v1.ProfileService.SearchByName:output_type -> profile.v1.SearchByNameResponse
+	13, // 13: profile.v1.ProfileService.Associate:output_type -> google.protobuf.Empty
+	7,  // [7:14] is the sub-list for method output_type
+	0,  // [0:7] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
