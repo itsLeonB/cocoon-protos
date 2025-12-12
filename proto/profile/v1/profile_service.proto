@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package profile.v1;
 
+import "google/protobuf/empty.proto";
 import "profile/v1/profile_message.proto";
 
 option go_package = "github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profile";
@@ -13,4 +14,5 @@ service ProfileService {
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc GetByEmail(GetByEmailRequest) returns (GetByEmailResponse);
   rpc SearchByName(SearchByNameRequest) returns (SearchByNameResponse);
+  rpc Associate(AssociateRequest) returns (google.protobuf.Empty);
 }

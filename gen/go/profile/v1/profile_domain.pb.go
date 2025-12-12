@@ -23,13 +23,15 @@ const (
 )
 
 type Profile struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Avatar        string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"open.v1"`
+	UserId                   string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Name                     string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Avatar                   string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Email                    string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	AssociatedAnonProfileIds []string               `protobuf:"bytes,5,rep,name=associated_anon_profile_ids,json=associatedAnonProfileIds,proto3" json:"associated_anon_profile_ids,omitempty"`
+	RealProfileId            string                 `protobuf:"bytes,6,opt,name=real_profile_id,json=realProfileId,proto3" json:"real_profile_id,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *Profile) Reset() {
@@ -86,6 +88,20 @@ func (x *Profile) GetAvatar() string {
 func (x *Profile) GetEmail() string {
 	if x != nil {
 		return x.Email
+	}
+	return ""
+}
+
+func (x *Profile) GetAssociatedAnonProfileIds() []string {
+	if x != nil {
+		return x.AssociatedAnonProfileIds
+	}
+	return nil
+}
+
+func (x *Profile) GetRealProfileId() string {
+	if x != nil {
+		return x.RealProfileId
 	}
 	return ""
 }
@@ -147,12 +163,14 @@ var File_profile_v1_profile_domain_proto protoreflect.FileDescriptor
 const file_profile_v1_profile_domain_proto_rawDesc = "" +
 	"\n" +
 	"\x1fprofile/v1/profile_domain.proto\x12\n" +
-	"profile.v1\x1a\x17audit/v1/metadata.proto\"d\n" +
+	"profile.v1\x1a\x17audit/v1/metadata.proto\"\xcb\x01\n" +
 	"\aProfile\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
 	"\x06avatar\x18\x03 \x01(\tR\x06avatar\x12\x14\n" +
-	"\x05email\x18\x04 \x01(\tR\x05email\"{\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\x12=\n" +
+	"\x1bassociated_anon_profile_ids\x18\x05 \x03(\tR\x18associatedAnonProfileIds\x12&\n" +
+	"\x0freal_profile_id\x18\x06 \x01(\tR\rrealProfileId\"{\n" +
 	"\x0fProfileResponse\x12-\n" +
 	"\aprofile\x18\x01 \x01(\v2\x13.profile.v1.ProfileR\aprofile\x129\n" +
 	"\x0eaudit_metadata\x18\x02 \x01(\v2\x12.audit.v1.MetadataR\rauditMetadataB=Z;github.com/itsLeonB/cocoon-protos/gen/go/profile/v1;profileb\x06proto3"
